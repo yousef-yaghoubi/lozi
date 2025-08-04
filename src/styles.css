@@ -1,0 +1,370 @@
+@import "tailwindcss";
+
+/* Font Face Declarations */
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url("/fonts/Modam-ExtraLight.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/Modam-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Modam-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/Modam-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/Modam-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/Modam-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url("/fonts/Modam-ExtraBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Modam";
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url("/fonts/Modam-Black.ttf") format("truetype");
+}
+
+/* Theme Configuration */
+@theme {
+  /* Typography */
+  --font-modam: "Modam", sans-serif;
+
+  /* Brand Colors */
+  --color-primary: #ff6f00;
+  --color-primary-50: #fff4e6;
+  --color-primary-100: #ffe2cc;
+  --color-primary-200: #ffcfaa;
+  --color-primary-300: #ffb780;
+  --color-primary-400: #ff9f55;
+  --color-primary-500: #ff872b;
+  --color-primary-600: #d45d00;
+  --color-primary-700: #aa4a00;
+  --color-primary-800: #803800;
+  --color-primary-900: #552500;
+  --color-primary-950: #331600;
+
+  --color-secondary: #ffb84d;
+  --color-secondary-50: #fff9f0;
+  --color-secondary-100: #fff1db;
+  --color-secondary-200: #ffe7c4;
+  --color-secondary-300: #ffdba6;
+  --color-secondary-400: #ffd088;
+  --color-secondary-500: #ffc46b;
+  --color-secondary-600: #d49940;
+  --color-secondary-700: #aa7b33;
+  --color-secondary-800: #805c27;
+  --color-secondary-900: #553d1a;
+  --color-secondary-950: #33250f;
+
+  /* Neutral Colors */
+  --color-black: #000000;
+  --color-black-50: #ebebeb;
+  --color-black-100: #cccccc;
+  --color-black-200: #aaaaaa;
+  --color-black-300: #808080;
+  --color-black-400: #555555;
+  --color-black-500: #2b2b2b;
+
+  /* Status Colors */
+  --color-error: #ff3b3b;
+  --color-error-light: #ff7f7f;
+  --color-error-dark: #e53535;
+
+  --color-warning: #ffcc00;
+  --color-warning-light: #fded72;
+  --color-warning-dark: #e5b800;
+
+  --color-success: #06c270;
+  --color-success-light: #56eba1;
+  --color-success-dark: #05a660;
+
+  /* Custom Shadows */
+  --shadow-custom-md: 0px 6px 14px -4px rgba(24, 39, 75, 0.12), 0px 10px 32px -4px rgba(24, 39, 75, 0.1);
+  --shadow-custom-lg: 0px 8px 18px -6px rgba(24, 39, 75, 0.12), 0px 12px 42px -4px rgba(24, 39, 75, 0.12);
+  --shadow-custom-xl: 0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12);
+  --shadow-custom-2xl: 0px 8px 28px -6px rgba(24, 39, 75, 0.12), 0px 18px 88px -4px rgba(24, 39, 75, 0.14);
+}
+
+/* Typography Component Classes */
+@layer components {
+  /* Base Typography Settings */
+  .typography {
+    @apply font-modam antialiased;
+  }
+
+  /* Desktop Headings - Simple Names */
+  .h1 {
+    @apply text-7xl font-black leading-none;
+    font-size: 72px;
+    line-height: 72px;
+  }
+
+  .h2 {
+    @apply text-6xl font-black;
+    font-size: 56px;
+    line-height: 72px;
+  }
+
+  .h3 {
+    @apply text-5xl font-extrabold;
+    font-size: 48px;
+    line-height: 64px;
+  }
+
+  .h4 {
+    @apply font-extrabold;
+    font-size: 44px;
+    line-height: 64px;
+  }
+
+  .h5 {
+    @apply text-4xl font-bold;
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  .h6 {
+    @apply text-3xl font-bold;
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .h7 {
+    @apply font-bold;
+    font-size: 28px;
+    line-height: 48px;
+  }
+
+  /* Body Text - Simple Names */
+  .text-lg {
+    @apply text-2xl font-medium;
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  .text-lg-bold {
+    @apply text-2xl font-bold;
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  .text-md {
+    @apply text-xl font-medium;
+    font-size: 20px;
+    line-height: 36px;
+  }
+
+  .text-md-bold {
+    @apply text-xl font-bold;
+    font-size: 20px;
+    line-height: 36px;
+  }
+
+  .text-sm {
+    @apply text-lg font-normal;
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  .text-sm-bold {
+    @apply text-lg font-bold;
+    font-size: 18px;
+    line-height: 32px;
+  }
+
+  /* Captions - Simple Names */
+  .caption-lg {
+    @apply text-base font-normal;
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .caption-lg-bold {
+    @apply text-base font-bold;
+    font-size: 16px;
+    line-height: 32px;
+  }
+
+  .caption-md {
+    @apply text-sm font-normal;
+    font-size: 14px;
+    line-height: 32px;
+  }
+
+  .caption-md-bold {
+    @apply text-sm font-bold;
+    font-size: 14px;
+    line-height: 32px;
+  }
+
+  .caption-sm {
+    @apply text-xs font-light;
+    font-size: 12px;
+    line-height: 28px;
+  }
+
+  /* Mobile Typography - Prefixed with 'm-' */
+  .m-h1 {
+    @apply font-bold;
+    font-size: 44px;
+    line-height: 72px;
+  }
+
+  .m-h2 {
+    @apply font-bold;
+    font-size: 40px;
+    line-height: 72px;
+  }
+
+  .m-h3 {
+    @apply font-bold;
+    font-size: 32px;
+    line-height: 72px;
+  }
+
+  .m-h4 {
+    @apply font-medium;
+    font-size: 24px;
+    line-height: 64px;
+  }
+
+  .m-h4-bold {
+    @apply font-bold;
+    font-size: 24px;
+    line-height: 64px;
+  }
+
+  .m-h5 {
+    @apply font-medium;
+    font-size: 20px;
+    line-height: 48px;
+  }
+
+  .m-h5-bold {
+    @apply font-bold;
+    font-size: 20px;
+    line-height: 48px;
+  }
+
+  .m-text {
+    @apply font-normal;
+    font-size: 16px;
+    line-height: 40px;
+  }
+
+  .m-text-bold {
+    @apply font-bold;
+    font-size: 16px;
+    line-height: 40px;
+  }
+
+  .m-text-sm {
+    @apply font-normal;
+    font-size: 14px;
+    line-height: 36px;
+  }
+
+  .m-caption {
+    @apply font-light;
+    font-size: 12px;
+    line-height: 32px;
+  }
+
+  .m-caption-bold {
+    @apply font-bold;
+    font-size: 12px;
+    line-height: 32px;
+  }
+
+  .m-caption-sm {
+    @apply font-light;
+    font-size: 10px;
+    line-height: 28px;
+  }
+
+  .m-caption-sm-bold {
+    @apply font-bold;
+    font-size: 10px;
+    line-height: 28px;
+  }
+
+  .m-caption-xs {
+    @apply font-light;
+    font-size: 8px;
+    line-height: 28px;
+  }
+
+  .m-caption-xs-light {
+    @apply font-extralight;
+    font-size: 10px;
+    line-height: 28px;
+  }
+
+
+
+  /* Utility Modifiers */
+  .typography-primary {
+    @apply text-primary;
+  }
+
+  .typography-secondary {
+    @apply text-secondary;
+  }
+
+  .typography-error {
+    @apply text-error;
+  }
+
+  .typography-success {
+    @apply text-success;
+  }
+
+  .typography-muted {
+    @apply text-black-400;
+  }
+
+  .typography-emphasized {
+    @apply text-black;
+  }
+}
