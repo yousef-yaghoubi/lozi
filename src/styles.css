@@ -72,7 +72,6 @@
 
   /* Brand Colors */
   --color-primary: #ff6f00;
-  --color-primary-50: #fff4e6;
   --color-primary-100: #ffe2cc;
   --color-primary-200: #ffcfaa;
   --color-primary-300: #ffb780;
@@ -85,7 +84,6 @@
   --color-primary-950: #331600;
 
   --color-secondary: #ffb84d;
-  --color-secondary-50: #fff9f0;
   --color-secondary-100: #fff1db;
   --color-secondary-200: #ffe7c4;
   --color-secondary-300: #ffdba6;
@@ -99,12 +97,20 @@
 
   /* Neutral Colors */
   --color-black: #000000;
-  --color-black-50: #ebebeb;
+  --color-black-50: #f1f1f1;
   --color-black-100: #cccccc;
   --color-black-200: #aaaaaa;
   --color-black-300: #808080;
   --color-black-400: #555555;
   --color-black-500: #2b2b2b;
+
+  /* White Colors */
+  --color-white: #ffffff;
+  --color-white-600: #d4d4d4;
+  --color-white-700: #aaaaaa;
+  --color-white-800: #808080;
+  --color-white-900: #555555;
+  --color-white-950: #333333;
 
   /* Status Colors */
   --color-error: #ff3b3b;
@@ -120,251 +126,316 @@
   --color-success-dark: #05a660;
 
   /* Custom Shadows */
-  --shadow-custom-md: 0px 6px 14px -4px rgba(24, 39, 75, 0.12), 0px 10px 32px -4px rgba(24, 39, 75, 0.1);
-  --shadow-custom-lg: 0px 8px 18px -6px rgba(24, 39, 75, 0.12), 0px 12px 42px -4px rgba(24, 39, 75, 0.12);
-  --shadow-custom-xl: 0px 8px 22px -6px rgba(24, 39, 75, 0.12), 0px 14px 64px -4px rgba(24, 39, 75, 0.12);
-  --shadow-custom-2xl: 0px 8px 28px -6px rgba(24, 39, 75, 0.12), 0px 18px 88px -4px rgba(24, 39, 75, 0.14);
+  --shadow-custom-md: 0px 6px 14px -4px rgba(24, 39, 75, 0.12),
+    0px 10px 32px -4px rgba(24, 39, 75, 0.1);
+  --shadow-custom-lg: 0px 8px 18px -6px rgba(24, 39, 75, 0.12),
+    0px 12px 42px -4px rgba(24, 39, 75, 0.12);
+  --shadow-custom-xl: 0px 8px 22px -6px rgba(24, 39, 75, 0.12),
+    0px 14px 64px -4px rgba(24, 39, 75, 0.12);
+  --shadow-custom-2xl: 0px 8px 28px -6px rgba(24, 39, 75, 0.12),
+    0px 18px 88px -4px rgba(24, 39, 75, 0.14);
+
+  /* --border-width-*: initial; */
+  --border-width-3: 3px;
+  /* --border-width-5: 5px; */
+  /* --border-width-10: 10px; */
 }
 
 /* Typography Component Classes */
-@layer components {
-  /* Base Typography Settings */
-  .typography {
-    @apply font-modam antialiased;
+
+/* Base Typography Settings */
+@utility typography {
+  @apply font-modam antialiased;
+}
+
+/* Desktop Headings - Simple Names */
+@utility w-h1 {
+  @apply text-7xl font-black leading-none;
+  font-size: 72px;
+  line-height: 1.28;
+}
+
+@utility w-h2 {
+  @apply text-6xl font-black;
+  font-size: 56px;
+  line-height: 1.25;
+}
+
+@utility w-h3 {
+  @apply text-5xl font-extrabold;
+  font-size: 48px;
+  line-height: 1.33;
+}
+
+@utility w-h4 {
+  @apply font-extrabold;
+  font-size: 44px;
+  line-height: 1.33;
+}
+
+@utility w-h5 {
+  @apply text-4xl font-bold;
+  font-size: 40px;
+  line-height: 1.5;
+}
+
+@utility w-h6 {
+  @apply text-3xl font-bold;
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+@utility w-h7 {
+  @apply font-bold;
+  font-size: 28px;
+  line-height: 1.5;
+}
+
+/* Body Text - Simple Names */
+@utility w-text-lg {
+  @apply text-2xl font-medium;
+  font-size: 24px;
+  line-height: 1.66;
+}
+
+@utility w-text-lg-bold {
+  @apply text-2xl font-bold;
+  font-size: 24px;
+  line-height: 1.66;
+}
+
+@utility w-text-md {
+  @apply text-xl font-medium;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+@utility w-text-md-bold {
+  @apply text-xl font-bold;
+  font-size: 20px;
+  line-height: 1.8;
+}
+
+@utility w-text-sm {
+  @apply text-lg font-normal;
+  font-size: 18px;
+  line-height: 1.77;
+}
+
+@utility w-text-sm-bold {
+  @apply text-lg font-bold;
+  font-size: 18px;
+  line-height: 1.77;
+}
+
+/* Captions - Simple Names */
+@utility w-caption-lg {
+  @apply text-base font-normal;
+  font-size: 16px;
+  line-height: 1.77;
+}
+
+@utility w-caption-lg-bold {
+  @apply text-base font-bold;
+  font-size: 16px;
+  line-height: 1.77;
+}
+
+@utility w-caption-md {
+  @apply text-sm font-normal;
+  font-size: 14px;
+  line-height: 1.77;
+}
+
+@utility w-caption-md-bold {
+  @apply text-sm font-bold;
+  font-size: 14px;
+  line-height: 1.77;
+}
+
+@utility w-caption-sm {
+  @apply text-xs font-light;
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+/* Mobile Typography - Prefixed with 'm-' */
+@utility m-h1 {
+  @apply font-bold;
+  font-size: 44px;
+  line-height: 1.28;
+}
+
+@utility m-h2 {
+  @apply font-bold;
+  font-size: 40px;
+  line-height: 1.28;
+}
+
+@utility m-h3 {
+  @apply font-bold;
+  font-size: 32px;
+  line-height: 1.28;
+}
+
+@utility m-h4 {
+  @apply font-medium;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+@utility m-h4-bold {
+  @apply font-bold;
+  font-size: 24px;
+  line-height: 1.33;
+}
+
+@utility m-h5 {
+  @apply font-medium;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+@utility m-h5-bold {
+  @apply font-bold;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+@utility m-text {
+  @apply font-normal;
+  font-size: 16px;
+  line-height: 1.66;
+}
+
+@utility m-text-bold {
+  @apply font-bold;
+  font-size: 16px;
+  line-height: 1.66;
+}
+
+@utility m-text-sm {
+  @apply font-normal;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@utility m-text-sm-bold {
+  @apply font-bold;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+@utility m-caption {
+  @apply font-light;
+  font-size: 12px;
+  line-height: 1.77;
+}
+
+@utility m-caption-bold {
+  @apply font-bold;
+  font-size: 12px;
+  line-height: 1.77;
+}
+
+@utility m-caption-sm {
+  @apply font-light;
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+@utility m-caption-sm-bold {
+  @apply font-bold;
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+@utility m-caption-xs {
+  @apply font-light;
+  font-size: 8px;
+  line-height: 1.75;
+}
+
+@utility m-caption-xs-light {
+  @apply font-extralight;
+  font-size: 10px;
+  line-height: 1.75;
+}
+
+/* Utility Modifiers */
+@utility typography-primary {
+  @apply text-primary;
+}
+
+@utility typography-secondary {
+  @apply text-secondary;
+}
+
+@utility typography-error {
+  @apply text-error;
+}
+
+@utility typography-success {
+  @apply text-success;
+}
+
+@utility typography-muted {
+  @apply text-black-400;
+}
+
+@utility typography-emphasized {
+  @apply text-black;
+}
+
+@utility boxForRounded {
+  border-radius: 0 0 1em 0;
+  &::after,
+  &::before {
+    content: "";
+    width: 1.5rem;
+    height: 1.5rem;
+    position: absolute;
+    border-start-end-radius: 1.5rem;
+    box-shadow: -5px -5px 0 5px white;
   }
 
-  /* Desktop Headings - Simple Names */
-  .h1 {
-    @apply text-7xl font-black leading-none;
-    font-size: 72px;
-    line-height: 72px;
+  &.footer::after {
+    inset-inline-end: -1.5rem;
+    top: 0;
+    right: -1.3em;
   }
 
-  .h2 {
-    @apply text-6xl font-black;
-    font-size: 56px;
-    line-height: 72px;
+  &.footer::before {
+    inset-inline-end: -1.5rem;
+    bottom: -1.5rem;
+    left: 0;
   }
 
-  .h3 {
-    @apply text-5xl font-extrabold;
-    font-size: 48px;
-    line-height: 64px;
+  &.homePage::after {
+    inset-inline-end: -1.5em;
+    bottom: -1px;
+    left: -1.5em;
+    rotate: 180deg;
   }
 
-  .h4 {
-    @apply font-extrabold;
-    font-size: 44px;
-    line-height: 64px;
+  &.homePage::before {
+    inset-inline-end: -1.5em;
+    top: -1.5em;
+    right: 0;
+    rotate: 180deg;
   }
+}
 
-  .h5 {
-    @apply text-4xl font-bold;
-    font-size: 40px;
-    line-height: 48px;
-  }
+@utility container {
+  max-width: none !important;
+  width: 100%;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  margin: 1rem auto 4.5rem auto;
 
-  .h6 {
-    @apply text-3xl font-bold;
-    font-size: 32px;
-    line-height: 48px;
-  }
-
-  .h7 {
-    @apply font-bold;
-    font-size: 28px;
-    line-height: 48px;
-  }
-
-  /* Body Text - Simple Names */
-  .text-lg {
-    @apply text-2xl font-medium;
-    font-size: 24px;
-    line-height: 40px;
-  }
-
-  .text-lg-bold {
-    @apply text-2xl font-bold;
-    font-size: 24px;
-    line-height: 40px;
-  }
-
-  .text-md {
-    @apply text-xl font-medium;
-    font-size: 20px;
-    line-height: 36px;
-  }
-
-  .text-md-bold {
-    @apply text-xl font-bold;
-    font-size: 20px;
-    line-height: 36px;
-  }
-
-  .text-sm {
-    @apply text-lg font-normal;
-    font-size: 18px;
-    line-height: 32px;
-  }
-
-  .text-sm-bold {
-    @apply text-lg font-bold;
-    font-size: 18px;
-    line-height: 32px;
-  }
-
-  /* Captions - Simple Names */
-  .caption-lg {
-    @apply text-base font-normal;
-    font-size: 16px;
-    line-height: 32px;
-  }
-
-  .caption-lg-bold {
-    @apply text-base font-bold;
-    font-size: 16px;
-    line-height: 32px;
-  }
-
-  .caption-md {
-    @apply text-sm font-normal;
-    font-size: 14px;
-    line-height: 32px;
-  }
-
-  .caption-md-bold {
-    @apply text-sm font-bold;
-    font-size: 14px;
-    line-height: 32px;
-  }
-
-  .caption-sm {
-    @apply text-xs font-light;
-    font-size: 12px;
-    line-height: 28px;
-  }
-
-  /* Mobile Typography - Prefixed with 'm-' */
-  .m-h1 {
-    @apply font-bold;
-    font-size: 44px;
-    line-height: 72px;
-  }
-
-  .m-h2 {
-    @apply font-bold;
-    font-size: 40px;
-    line-height: 72px;
-  }
-
-  .m-h3 {
-    @apply font-bold;
-    font-size: 32px;
-    line-height: 72px;
-  }
-
-  .m-h4 {
-    @apply font-medium;
-    font-size: 24px;
-    line-height: 64px;
-  }
-
-  .m-h4-bold {
-    @apply font-bold;
-    font-size: 24px;
-    line-height: 64px;
-  }
-
-  .m-h5 {
-    @apply font-medium;
-    font-size: 20px;
-    line-height: 48px;
-  }
-
-  .m-h5-bold {
-    @apply font-bold;
-    font-size: 20px;
-    line-height: 48px;
-  }
-
-  .m-text {
-    @apply font-normal;
-    font-size: 16px;
-    line-height: 40px;
-  }
-
-  .m-text-bold {
-    @apply font-bold;
-    font-size: 16px;
-    line-height: 40px;
-  }
-
-  .m-text-sm {
-    @apply font-normal;
-    font-size: 14px;
-    line-height: 36px;
-  }
-
-  .m-caption {
-    @apply font-light;
-    font-size: 12px;
-    line-height: 32px;
-  }
-
-  .m-caption-bold {
-    @apply font-bold;
-    font-size: 12px;
-    line-height: 32px;
-  }
-
-  .m-caption-sm {
-    @apply font-light;
-    font-size: 10px;
-    line-height: 28px;
-  }
-
-  .m-caption-sm-bold {
-    @apply font-bold;
-    font-size: 10px;
-    line-height: 28px;
-  }
-
-  .m-caption-xs {
-    @apply font-light;
-    font-size: 8px;
-    line-height: 28px;
-  }
-
-  .m-caption-xs-light {
-    @apply font-extralight;
-    font-size: 10px;
-    line-height: 28px;
-  }
-
-
-
-  /* Utility Modifiers */
-  .typography-primary {
-    @apply text-primary;
-  }
-
-  .typography-secondary {
-    @apply text-secondary;
-  }
-
-  .typography-error {
-    @apply text-error;
-  }
-
-  .typography-success {
-    @apply text-success;
-  }
-
-  .typography-muted {
-    @apply text-black-400;
-  }
-
-  .typography-emphasized {
-    @apply text-black;
+  @media (width >= 48rem) {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    margin: 2.75rem auto 8rem auto;
   }
 }
