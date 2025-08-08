@@ -124,7 +124,6 @@
   --color-success: #06c270;
   --color-success-light: #56eba1;
   --color-success-dark: #05a660;
-
   /* Custom Shadows */
   --shadow-custom-md: 0px 6px 14px -4px rgba(24, 39, 75, 0.12),
     0px 10px 32px -4px rgba(24, 39, 75, 0.1);
@@ -137,6 +136,8 @@
 
   /* --border-width-*: initial; */
   --border-width-3: 3px;
+
+  --radius-2.5xl: 20px;
   /* --border-width-5: 5px; */
   /* --border-width-10: 10px; */
 }
@@ -439,3 +440,86 @@
     margin: 2.75rem auto 8rem auto;
   }
 }
+
+@utility boxForPuzzle {
+  position: relative;
+
+  &::after,
+  &.topTobottom::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    border-start-end-radius: 20px;
+    box-shadow: -5px -5px 0 5px white;
+    border-top: 3px solid var(--color-primary);
+    border-left: 3px solid var(--color-primary);
+    transition: box-shadow 0.3s, border-color 0.3s;
+  }
+
+  /* وقتی روی گروه هاور میشه */
+  .group:hover &::after,
+  .group:hover &.topTobottom::before {
+    box-shadow: -5px -5px 0 5px var(--color-primary);
+    border-top-color: white;
+    border-left-color: white;
+  }
+
+  /* موقعیت‌ها */
+  &.topToRight::after {
+    left: -1.24em;
+    top: 0.1em;
+    rotate: 90deg;
+  }
+
+  &.topToLeft::after {
+    right: -1.24em;
+    top: 0.1em;
+  }
+
+  &.topTobottom::after {
+    right: -1.24em;
+    top: 0.1em;
+  }
+  &.topTobottom::before {
+    left: -1.24em;
+    top: 0.1em;
+    rotate: 90deg;
+  }
+
+  &.bottomToRight::after {
+    left: -1.24em;
+    bottom: 0.1em;
+    rotate: 180deg;
+  }
+
+  &.bottomToLeft::after {
+    right: -1.24em;
+    bottom: 0.1em;
+    rotate: -90deg;
+  }
+
+  &.bottomToTop.left::after {
+    right: -1.25em;
+    bottom: 0.1em;
+    rotate: -90deg;
+  }
+  &.bottomToTop.right::after {
+    left: -1.25em;
+    bottom: 0.1em;
+    rotate: 180deg;
+  }
+}
+
+/* .parenPuzzleRounded {
+  clip-path: polygon(
+    -0.23% -1.39%,
+    100.23% -2.08%,
+    100.69% 166.66%,
+    66.4% 165.97%,
+    65.24% 101.58%,
+    -0.23% 102.28%
+  );
+} */
+
+
