@@ -447,14 +447,32 @@
   &::after,
   &.topTobottom::before {
     content: "";
-    width: 20px;
-    height: 20px;
     position: absolute;
-    border-start-end-radius: 20px;
     box-shadow: -5px -5px 0 5px white;
     border-top: 3px solid var(--color-primary);
     border-left: 3px solid var(--color-primary);
     transition: box-shadow 0.3s, border-color 0.3s;
+  }
+
+  &.lg::after,
+  &.lg::before {
+    border-start-end-radius: 20px;
+    height: 20px;
+    width: 20px;
+  }
+
+  &.small::after,
+  &.small::before {
+    border-start-end-radius: 12px;
+    height: 12px;
+    width: 12px;
+  }
+
+  &.mobile::after,
+  &.mobile::before {
+    border-start-end-radius: 10px;
+    height: 10px;
+    width: 10px;
   }
 
   /* وقتی روی گروه هاور میشه */
@@ -466,25 +484,62 @@
   }
 
   /* موقعیت‌ها */
-  &.topToRight::after {
+  /* &.topToRight::after {
+    left: -1.24em;
+    top: 0.1em;
+    rotate: 90deg;
+  } */
+  &.topToRight.lg::after {
     left: -1.24em;
     top: 0.1em;
     rotate: 90deg;
   }
-
-  &.topToLeft::after {
+  &.topToRight.small::after {
+    left: -0.75em;
+    top: 0em;
+    rotate: 90deg;
+  }
+  &.topToRight.mobile::after {
+    left: -0.6em;
+    top: 0em;
+    rotate: 90deg;
+  }
+  &.topToLeft.lg::after {
     right: -1.24em;
     top: 0.1em;
   }
-
-  &.topTobottom::after {
-    right: -1.24em;
-    top: 0.1em;
+  &.topToLeft.small::after {
+    right: -0.75em;
+    top: 0em;
+    rotate: 0deg;
   }
+  &.topToLeft.mobile::after {
+    right: -0.64em;
+    top: 0em;
+  }
+
+  /* &.topToLeft.small::after {
+    right: -0.75em;
+    top: 0em;
+  } */
   &.topTobottom::before {
     left: -1.24em;
     top: 0.1em;
     rotate: 90deg;
+  }
+  &.topTobottom::after {
+    right: -1.24em;
+    top: 0.1em;
+  }
+  &.topTobottom.small::after,
+  &.topTobottom.mobile::after {
+    right: -0.75em;
+    top: 0em;
+  }
+  &.topTobottom.small::before,
+  &.topTobottom.mobile::before {
+    left: -0.75em;
+    top: 0em;
   }
 
   &.bottomToRight::after {
@@ -492,10 +547,30 @@
     bottom: 0.1em;
     rotate: 180deg;
   }
+  &.bottomToRight.small::after {
+    left: -0.75em;
+    bottom: 0em;
+    rotate: 180deg;
+  }
+  &.bottomToRight.mobile::after {
+    left: -0.6em;
+    bottom: 0em;
+    rotate: 180deg;
+  }
 
   &.bottomToLeft::after {
     right: -1.24em;
     bottom: 0.1em;
+    rotate: -90deg;
+  }
+  &.bottomToLeft.small::after {
+    right: -0.75em;
+    bottom: 0em;
+    rotate: -90deg;
+  }
+  &.bottomToLeft.mobile::after {
+    right: -0.64em;
+    bottom: 0em;
     rotate: -90deg;
   }
 
@@ -507,6 +582,28 @@
   &.bottomToTop.right::after {
     left: -1.25em;
     bottom: 0.1em;
+    rotate: 180deg;
+  }
+
+  &.bottomToTop.left.mobile::after {
+    right: -0.64em;
+    bottom: 0em;
+    rotate: -90deg;
+  }
+  &.bottomToTop.right.mobile::after {
+    left: -0.6em;
+    bottom: 0em;
+    rotate: 180deg;
+  }
+
+  &.bottomToTop.left.small::after {
+    right: -0.75em;
+    bottom: 0em;
+    rotate: -90deg;
+  }
+  &.bottomToTop.right.small::after {
+    left: -0.75em;
+    bottom: 0em;
     rotate: 180deg;
   }
 }
@@ -521,5 +618,3 @@
     -0.23% 102.28%
   );
 } */
-
-

@@ -13,12 +13,13 @@ function App() {
       <HomePage />
 
       <div className="w-full grid grid-cols-3 justify-items-center gap-y-56 mt-10">
-        <Puzzle state="topToRight" />
-        <Puzzle state="topTobottom" />
-        <Puzzle state="topToLeft" />
-        <Puzzle state="bottomToRight" />
-        <Puzzle state="bottomToTop" />
-        <Puzzle state="bottomToLeft" />
+        <Puzzle state="topToRight" size="lg" />
+        <Puzzle state="topTobottom" size="lg" />
+        <Puzzle state="topToLeft" size="lg" />
+
+        <Puzzle state="bottomToRight" size="lg" />
+        <Puzzle state="bottomToTop" size="lg" />
+        <Puzzle state="bottomToLeft" size="lg" />
       </div>
     </>
   );
