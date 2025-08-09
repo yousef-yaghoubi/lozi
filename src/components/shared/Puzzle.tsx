@@ -1,16 +1,6 @@
 import { cn } from "@/lib/clsx";
-type StateType =
-  | "topToRight"
-  | "topToLeft"
-  | "topTobottom"
-  | "bottomToRight"
-  | "bottomToLeft"
-  | "bottomToTop";
-
-interface PuzzleProps {
-  state: StateType;
-  size: "lg" | "small" | "mobile";
-}
+import { IconPuzzels } from "@/lib/IndexIcon";
+import type { PuzzleProps, StateType } from "@/types/Puzzle";
 
 const parentClasses: Record<StateType, string> = {
   topToRight: "rounded-br-none",
@@ -30,7 +20,7 @@ const childClasses: Record<StateType, string> = {
   bottomToTop: cn("-top-[67%] border-3 border-primary bottomToTop"),
 };
 
-function Puzzle({ state, size }: PuzzleProps) {
+function Puzzle({ state, size, text, icon }: PuzzleProps) {
   const baseParent = cn(
     "bg-white w-full h-full border-3 border-primary transition-colors duration-300 group-hover:bg-primary group-hover:border-white",
     size == "lg"
@@ -41,39 +31,6 @@ function Puzzle({ state, size }: PuzzleProps) {
   );
   const baseChild =
     "w-1/3 h-[70%] bg-white boxForPuzzle absolute transition-colors duration-300 group-hover:bg-primary group-hover:border-white group-hover:after:border-white";
-
-  // let roundedChild;
-  // if (size == "lg") {
-  //   if (
-  //     state == "bottomToLeft" ||
-  //     state == "bottomToRight" ||
-  //     state == "bottomToTop"
-  //   ) {
-  //     roundedChild = "rounded-b-2.5xl border-b-0";
-  //   } else {
-  //     roundedChild = "rounded-t-2.5xl border-t-0";
-  //   }
-  // } else if (size == "small") {
-  //   if (
-  //     state == "bottomToLeft" ||
-  //     state == "bottomToRight" ||
-  //     state == "bottomToTop"
-  //   ) {
-  //     roundedChild = "rounded-b-xl border-b-0";
-  //   } else {
-  //     roundedChild = "rounded-t-xl border-t-0";
-  //   }
-  // } else if (size == "mobile") {
-  //   if (
-  //     state == "bottomToLeft" ||
-  //     state == "bottomToRight" ||
-  //     state == "bottomToTop"
-  //   ) {
-  //     roundedChild = "rounded-b-[10px] border-b-0";
-  //   } else {
-  //     roundedChild = "rounded-t-[10px] border-t-0";
-  //   }
-  // }
 
   const classes = {
     lg: {
@@ -93,6 +50,8 @@ function Puzzle({ state, size }: PuzzleProps) {
   const isBottom = state.startsWith("bottom");
   const roundedChild = classes[size]?.[isBottom ? "bottom" : "top"];
 
+  const IconForPuzzle = IconPuzzels[icon as keyof typeof IconPuzzels];
+
   return (
     <div
       className={cn(
@@ -109,9 +68,37 @@ function Puzzle({ state, size }: PuzzleProps) {
         className={cn(
           baseParent,
           parentClasses[state],
-          "relative overflow-hidden"
+          "relative overflow-hidden text-primary group-hover:text-white flex items-center",
+          size == "lg"
+            ? "w-h5 p-8 gap-x-4"
+            : size == "small"
+            ? "w-text-md-bold p-4 gap-x-2"
+            : "m-text-sm py-4 px-3 gap-x-1"
         )}
-      ></div>
+      >
+        <i
+          className={cn(
+            size == "lg"
+              ? "p-2 rounded-lg"
+              : size == "small"
+              ? "p-1 rounded-sm"
+              : "p-[3px] rounded-sm",
+            "bg-primary group-hover:bg-white h-fit transition-all duration-300"
+          )}
+        >
+          <IconForPuzzle
+            className={cn(
+              size == "lg"
+                ? "w-8 h-8"
+                : size == "small"
+                ? "rounded-sm w-4 h-4"
+                : "rounded-sm w-3 h-3",
+              "text-white group-hover:text-primary h-fit"
+            )}
+          />
+        </i>
+        <span>{text}</span>
+      </div>
 
       {/* Main Child */}
       <div
