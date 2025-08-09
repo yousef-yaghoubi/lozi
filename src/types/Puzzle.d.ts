@@ -1,7 +1,9 @@
+import type { ComponentProps } from "react";
+
 export type StateType =
   | "topToRight"
   | "topToLeft"
-  | "topTobottom"
+  | "topToBottom"
   | "bottomToRight"
   | "bottomToLeft"
   | "bottomToTop";
@@ -11,11 +13,13 @@ export interface PuzzleProps {
   size: "lg" | "small" | "mobile";
   text: string;
   icon: string;
+  iconFar?: boolean;
+  className?: ComponentProps<"div">["className"]
 }
 
 export interface PuzzleFullArray {
-    id: number,
-    title: string,
-    icon: string,
-    state: StateType
+  id: number;
+  title: string;
+  icon: string;
+  state: StateType;
 }

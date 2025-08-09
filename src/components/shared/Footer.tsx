@@ -54,7 +54,7 @@ function Footer() {
         </div>
       </>
 
-      <IconCBig className="absolute -bottom-4 sm:-bottom-80 -right-60 rotate-0 sm:rotate-45" />
+      <IconCBig className="absolute -bottom-4 sm:-bottom-80 -right-60 rotate-0 sm:rotate-45 text-primary" />
     </footer>
   );
 }

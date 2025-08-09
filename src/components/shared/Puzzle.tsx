@@ -5,7 +5,7 @@ import type { PuzzleProps, StateType } from "@/types/Puzzle";
 const parentClasses: Record<StateType, string> = {
   topToRight: "rounded-br-none",
   topToLeft: "rounded-bl-none",
-  topTobottom: "",
+  topToBottom: "",
   bottomToRight: "rounded-tr-none",
   bottomToLeft: "rounded-tl-none",
   bottomToTop: "rounded-t-none",
@@ -14,13 +14,13 @@ const parentClasses: Record<StateType, string> = {
 const childClasses: Record<StateType, string> = {
   topToRight: cn("right-0 border-3 border-primary"),
   topToLeft: cn("left-0 border-3 border-primary"),
-  topTobottom: cn("left-0 right-0 mx-auto border-3 border-primary"),
+  topToBottom: cn("left-0 right-0 mx-auto border-3 border-primary"),
   bottomToRight: cn("right-0 -top-[67%] border-3 border-primary"),
   bottomToLeft: cn("left-0 -top-[67%] border-3 border-primary"),
   bottomToTop: cn("-top-[67%] border-3 border-primary bottomToTop"),
 };
 
-function Puzzle({ state, size, text, icon }: PuzzleProps) {
+function Puzzle({ state, size, text, icon, iconFar, className }: PuzzleProps) {
   const baseParent = cn(
     "bg-white w-full h-full border-3 border-primary transition-colors duration-300 group-hover:bg-primary group-hover:border-white",
     size == "lg"
@@ -43,7 +43,7 @@ function Puzzle({ state, size, text, icon }: PuzzleProps) {
     },
     mobile: {
       bottom: "rounded-t-[10px] border-b-0 -top-[66%]",
-      top: "rounded-b-[10px] border-t-0 top-[96%]",
+      top: "rounded-b-[10px] border-t-0 top-[95%]",
     },
   };
 
@@ -56,6 +56,7 @@ function Puzzle({ state, size, text, icon }: PuzzleProps) {
     <div
       className={cn(
         "relative group parenPuzzleRounded",
+        className,
         size == "lg"
           ? "w-[432px] h-36"
           : size == "small"
@@ -72,7 +73,7 @@ function Puzzle({ state, size, text, icon }: PuzzleProps) {
           size == "lg"
             ? "w-h5 p-8 gap-x-4"
             : size == "small"
-            ? "w-text-md-bold p-4 gap-x-2"
+            ? "w-text-md py-4 px-3 gap-x-2"
             : "m-text-sm py-4 px-3 gap-x-1"
         )}
       >
@@ -83,6 +84,7 @@ function Puzzle({ state, size, text, icon }: PuzzleProps) {
               : size == "small"
               ? "p-1 rounded-sm"
               : "p-[3px] rounded-sm",
+            iconFar == true ? "hidden" : "flex",
             "bg-primary group-hover:bg-white h-fit transition-all duration-300"
           )}
         >
@@ -108,9 +110,32 @@ function Puzzle({ state, size, text, icon }: PuzzleProps) {
           roundedChild,
           state,
           size,
-          "right "
+          "right flex justify-center items-center"
         )}
-      />
+      >
+        <i
+          className={cn(
+            size == "lg"
+              ? "p-2 rounded-lg"
+              : size == "small"
+              ? "p-1 rounded-sm"
+              : "p-[3px] rounded-sm",
+            iconFar == true ? "flex" : "hidden",
+            "bg-primary group-hover:bg-white h-fit transition-all duration-300"
+          )}
+        >
+          <IconForPuzzle
+            className={cn(
+              size == "lg"
+                ? "w-8 h-8"
+                : size == "small"
+                ? "rounded-sm w-4 h-4"
+                : "rounded-sm w-3 h-3",
+              "text-white group-hover:text-primary h-fit"
+            )}
+          />
+        </i>
+      </div>
 
       {/* Extra child only for bottomToTop */}
       {state === "bottomToTop" && (

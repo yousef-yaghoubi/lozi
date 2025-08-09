@@ -1,5 +1,8 @@
 @import "tailwindcss";
-
+@plugin './lib/hero.ts';
+/* Note: You may need to change the path to fit your project structure */
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+/* @custom-variant dark (&:is(.dark *)); */
 /* Font Face Declarations */
 @font-face {
   font-family: "Modam";
@@ -64,6 +67,10 @@
   font-display: swap;
   src: url("/fonts/Modam-Black.ttf") format("truetype");
 }
+
+/* ::root {
+  select: #ff6f00;
+} */
 
 /* Theme Configuration */
 @theme {
@@ -435,8 +442,8 @@
   margin: 1rem auto 4.5rem auto;
 
   @media (width >= 48rem) {
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
+    padding-right: 4rem;
+    padding-left: 4rem;
     margin: 2.75rem auto 8rem auto;
   }
 }
@@ -445,7 +452,7 @@
   position: relative;
 
   &::after,
-  &.topTobottom::before {
+  &.topToBottom::before {
     content: "";
     position: absolute;
     box-shadow: -5px -5px 0 5px white;
@@ -477,18 +484,11 @@
 
   /* وقتی روی گروه هاور میشه */
   .group:hover &::after,
-  .group:hover &.topTobottom::before {
+  .group:hover &.topToBottom::before {
     box-shadow: -5px -5px 0 5px var(--color-primary);
     border-top-color: white;
     border-left-color: white;
   }
-
-  /* موقعیت‌ها */
-  /* &.topToRight::after {
-    left: -1.24em;
-    top: 0.1em;
-    rotate: 90deg;
-  } */
   &.topToRight.lg::after {
     left: -1.24em;
     top: 0.1em;
@@ -517,28 +517,29 @@
     right: -0.64em;
     top: 0em;
   }
-
-  /* &.topToLeft.small::after {
-    right: -0.75em;
-    top: 0em;
-  } */
-  &.topTobottom::before {
+  &.topToBottom::before {
     left: -1.24em;
     top: 0.1em;
     rotate: 90deg;
   }
-  &.topTobottom::after {
+  &.topToBottom::after {
     right: -1.24em;
     top: 0.1em;
   }
-  &.topTobottom.small::after,
-  &.topTobottom.mobile::after {
+  &.topToBottom.small::after {
     right: -0.75em;
     top: 0em;
   }
-  &.topTobottom.small::before,
-  &.topTobottom.mobile::before {
+  &.topToBottom.mobile::after {
+    right: -0.64em;
+    top: 0em;
+  }
+  &.topToBottom.small::before {
     left: -0.75em;
+    top: 0em;
+  }
+  &.topToBottom.mobile::before {
+    left: -0.6em;
     top: 0em;
   }
 
@@ -553,7 +554,7 @@
     rotate: 180deg;
   }
   &.bottomToRight.mobile::after {
-    left: -0.6em;
+    left: -0.64em;
     bottom: 0em;
     rotate: 180deg;
   }
@@ -607,14 +608,3 @@
     rotate: 180deg;
   }
 }
-
-/* .parenPuzzleRounded {
-  clip-path: polygon(
-    -0.23% -1.39%,
-    100.23% -2.08%,
-    100.69% 166.66%,
-    66.4% 165.97%,
-    65.24% 101.58%,
-    -0.23% 102.28%
-  );
-} */

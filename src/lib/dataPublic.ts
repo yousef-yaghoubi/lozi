@@ -25,10 +25,31 @@ export const LinksForSocialFooter = [
 ];
 
 export const PuzzleFull = [
-  {id: 1, title: "کیت رابط کاربری", icon: "browser", state: "topToRight"},
-  {id: 4, title: "آیکن ست", icon: "puzzle", state: "bottomToLeft"},
-  {id: 2, title: "ایلاستریشن", icon: "nib", state: "topTobottom"},
-  {id: 5, title: "ماکاپ", icon: "computer", state: "bottomToTop"},
-  {id: 3, title: "دیزاین سیستم", icon: "layers", state: "topToLeft"},
-  {id: 6, title: "آبجکت سه بعدی", icon: "objectBox", state: "bottomToRight"},
-]
+  { id: 1, title: "کیت رابط کاربری", icon: "browser", state: "topToRight" },
+  { id: 4, title: "آیکن ست", icon: "puzzle", state: "bottomToLeft" },
+  { id: 2, title: "ایلاستریشن", icon: "nib", state: "topToBottom" },
+  { id: 5, title: "ماکاپ", icon: "computer", state: "bottomToTop" },
+  { id: 3, title: "دیزاین سیستم", icon: "layers", state: "topToLeft" },
+  { id: 6, title: "آبجکت سه بعدی", icon: "objectBox", state: "bottomToRight" },
+];
+
+export const ThreePuzzle = [
+  {
+    id: 1,
+    title: "کیفیت تضمینی فایل‌ها",
+    icon: "shield",
+    state: "bottomToRight",
+  },
+  {
+    id: 2,
+    title: "پشتیبانی ۱۲ ساعته",
+    icon: "headphone",
+    state: "topToBottom",
+  },
+  {
+    id: 3,
+    title: "دانلود سریع و آسان",
+    icon: "folderDownload",
+    state: "bottomToLeft",
+  },
+];

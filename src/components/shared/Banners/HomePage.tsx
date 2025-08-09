@@ -3,7 +3,7 @@ import Button from "../Button";
 import ShapeTexture from "/public/images/FullShapes.svg?react";
 function HomePage() {
   return (
-    <div className="h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 m-auto relative">
+    <div className="h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 md:mb-7 m-auto relative">
       <>
         <div className="md:w-[calc(100%_-_480px)] lg:w-auto">
           <h3 className="m-h3 md:w-h4 lg:w-h2 text-white">
