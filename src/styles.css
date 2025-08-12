@@ -484,7 +484,9 @@
 
   /* وقتی روی گروه هاور میشه */
   .group:hover &::after,
-  .group:hover &.topToBottom::before {
+  .group:hover &::before,
+  .groupHovered &::before,
+  .groupHovered &::after {
     box-shadow: -5px -5px 0 5px var(--color-primary);
     border-top-color: white;
     border-left-color: white;

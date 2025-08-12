@@ -51,12 +51,16 @@ function App() {
               text={puzzle.title}
               size={windowWidth > 780 ? "small" : "mobile"}
               iconFar
+              isActive
             />
           ))}
         </div>
       </section>
 
-      <TitleHead header="پـرفــروش تـرین های لــــوزی" desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"/>
+      <TitleHead
+        header="پـرفــروش تـرین های لــــوزی"
+        desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
+      />
     </>
   );
 }

@@ -14,7 +14,8 @@ export interface PuzzleProps {
   text: string;
   icon: string;
   iconFar?: boolean;
-  className?: ComponentProps<"div">["className"]
+  className?: ComponentProps<"div">["className"],
+  hovered?: boolean
 }
 
 export interface PuzzleFullArray {
