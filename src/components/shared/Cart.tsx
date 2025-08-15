@@ -1,6 +1,8 @@
 import { numberToPersian } from "@/lib/numberToPersian";
 import IconHeart from "@icons/Heart.svg?react";
 import IconPolygon from "@icons/Polygon1.svg?react";
+import IconLeft from "@icons/direaction-left.svg?react";
+import Button from "./Button";
 function Cart({ type }: { type: "product" | "blog" }) {
   const price = 350000;
   if (type == "product") {
@@ -35,8 +37,11 @@ function Cart({ type }: { type: "product" | "blog" }) {
             <span className="m-caption-sm w-text-md">تومان</span>
           </div>
         </>
-        <div className="w-[45%] h-8 md:h-[76px] bg-white boxForCardProduct">
-            
+        <div className="w-[45%] h-8 md:h-[76px] bg-white pl-2 pt-2 md:pl-4 md:pt-4 boxForCardProduct">
+          <Button btn="stroke" size="medium" className="w-full">
+            <span>خرید</span>
+            <IconLeft className="w-2.5 h-2.5 md:w-5 md:h-5"/>
+          </Button>
         </div>
       </div>
     );
