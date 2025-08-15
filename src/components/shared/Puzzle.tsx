@@ -2,10 +2,6 @@ import { cn } from "@/lib/clsx";
 import { IconPuzzels } from "@/lib/IndexIcon";
 import type { PuzzleProps, StateType } from "@/types/Puzzle";
 
-interface ExtendedPuzzleProps extends PuzzleProps {
-  isActive?: boolean;
-}
-
 const parentClasses: Record<StateType, string> = {
   topToRight: "rounded-br-none",
   topToLeft: "rounded-bl-none",
@@ -30,44 +26,67 @@ const classes = {
   mobile: { bottom: "rounded-t-[10px] border-b-0 -top-[66%]", top: "rounded-b-[10px] border-t-0 top-[95%]" },
 };
 
-function Puzzle({ state, size, text, icon, iconFar, className, isActive = false }: ExtendedPuzzleProps) {
-  const baseParent = cn(
-    "w-full h-full border-3 transition-colors duration-300",
-    !isActive && "bg-white border-primary group-hover:bg-primary group-hover:border-white",
-    isActive && "bg-primary border-white",
-    size == "lg" ? "rounded-2.5xl" : size == "small" ? "rounded-xl" : "rounded-[10px]"
-  );
-
-  const baseChild = cn(
-    "w-1/3 h-[70%] boxForPuzzle absolute transition-colors duration-300",
-    !isActive && "bg-white border-primary group-hover:bg-primary group-hover:border-white group-hover:after:border-white",
-    isActive && "bg-primary border-white after:border-white"
-  );
-
+function Puzzle({ state, size, text, icon, iconFar, className, isActive = false }: PuzzleProps) {
   const isBottom = state.startsWith("bottom");
-  const roundedChild = classes[size]?.[isBottom ? "bottom" : "top"];
   const IconForPuzzle = IconPuzzels[icon as keyof typeof IconPuzzels];
+  const roundedChild = classes[size]?.[isBottom ? "bottom" : "top"];
 
-  const containerSize = size == "lg" ? "w-[432px] h-36" : size == "small" ? "w-[216px] h-[73px]" : "w-[165px] h-16";
-  const parentSize = size == "lg" ? "w-h5 p-8 gap-x-4" : size == "small" ? "w-text-md py-4 px-3 gap-x-2" : "m-text-sm py-4 px-3 gap-x-1";
-  const iconSize = size == "lg" ? "p-2 rounded-lg" : size == "small" ? "p-1 rounded-sm" : "p-[3px] rounded-sm";
-  const iconDimensions = size == "lg" ? "w-8 h-8" : size == "small" ? "rounded-sm w-4 h-4" : "rounded-sm w-3 h-3";
+  // Size configurations
+  const containerSize = size === "lg" ? "w-[432px] h-36" 
+    : size === "small" ? "w-[216px] h-[73px]" 
+    : "w-[165px] h-16";
+
+  const parentSize = size === "lg" ? "w-h5 p-8 gap-x-4" 
+    : size === "small" ? "w-text-md py-4 px-3 gap-x-2" 
+    : "m-text-sm py-4 px-3 gap-x-1";
+
+  const iconSize = size === "lg" ? "p-2 rounded-lg" 
+    : size === "small" ? "p-1 rounded-sm" 
+    : "p-[3px] rounded-sm";
+
+  const iconDimensions = size === "lg" ? "w-8 h-8" 
+    : size === "small" ? "rounded-sm w-4 h-4" 
+    : "rounded-sm w-3 h-3";
+
+  const parentRounded = size === "lg" ? "rounded-2.5xl" 
+    : size === "small" ? "rounded-xl" 
+    : "rounded-[10px]";
+
+  // Style classes based on active state
+  const parentBg = !isActive 
+    ? "bg-white border-primary group-hover:bg-primary group-hover:border-white" 
+    : "bg-primary border-white";
+
+  const childBg = !isActive 
+    ? "bg-white border-primary group-hover:bg-primary group-hover:border-white group-hover:after:border-white" 
+    : "bg-primary border-white after:border-white";
 
   const textColor = !isActive ? "text-primary group-hover:text-white" : "text-white";
   const iconBg = !isActive ? "bg-primary group-hover:bg-white" : "bg-white";
   const iconTextColor = !isActive ? "text-white group-hover:text-primary" : "text-primary";
 
+  const baseParent = cn(
+    "w-full h-full border-3 transition-colors duration-300",
+    parentBg,
+    parentRounded
+  );
+
+  const baseChild = cn(
+    "w-1/3 h-[70%] boxForPuzzle absolute transition-colors duration-300",
+    childBg
+  );
+
   return (
     <div className={cn("relative group parenPuzzleRounded", isActive && "groupHovered", className, containerSize)}>
       <div className={cn(baseParent, parentClasses[state], "relative overflow-hidden flex items-center", textColor, parentSize)}>
-        <i className={cn(iconSize, iconFar == true ? "hidden" : "flex", "h-fit transition-all duration-300", iconBg)}>
+        <i className={cn(iconSize, iconFar === true ? "hidden" : "flex", "h-fit transition-all duration-300", iconBg)}>
           <IconForPuzzle className={cn(iconDimensions, "h-fit", iconTextColor)} />
         </i>
         <span>{text}</span>
       </div>
 
       <div className={cn(baseChild, childClasses[state], roundedChild, state, size, "right flex justify-center items-center")}>
-        <i className={cn(iconSize, iconFar == true ? "flex" : "hidden", "h-fit transition-all duration-300", iconBg)}>
+        <i className={cn(iconSize, iconFar === true ? "flex" : "hidden", "h-fit transition-all duration-300", iconBg)}>
           <IconForPuzzle className={cn(iconDimensions, "h-fit", iconTextColor)} />
         </i>
       </div>

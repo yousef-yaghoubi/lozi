@@ -1,8 +1,8 @@
 import HomePage from "@/components/shared/Banners/HomePage";
+import Cart from "@/components/shared/Cart";
 import Puzzle from "@/components/shared/Puzzle";
 import TitleHead from "@/components/shared/TitleHead";
-import { ThreePuzzle } from "@/lib/dataPublic";
-import type { StateType } from "@/types/Puzzle";
+import { PuzzleFull, ThreePuzzle } from "@/lib/dataPublic";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
@@ -36,18 +36,18 @@ function App() {
       <HomePage />
       <section className="flex flex-col w-full items-center my-4 md:my-16">
         <div className="max-w-2xl flex flex-col items-center">
-          <h2 className="m-h2 md:w-h5">پـروژه‌ت رو بـا مـا کـامل کـن!</h2>
+          <h2 className="m-h2 md:w-h5 text-center">پـروژه‌ت رو بـا مـا کـامل کـن!</h2>
           <h4 className="m-h5 md:w-h7 text-black-200">
             هر قطعه‌ای که برای طراحی نیاز داری، اینجاست
           </h4>
         </div>
-        <div className="w-full max-w-2xl gap-y-32 grid md:grid-rows-[120px] grid-rows-[170px] grid-cols-3 mt-4 md:mt-8">
+        <div className="w-full max-w-2xl gap-y-12 md:gap-y-2 grid grid-rows-2 grid-cols-2 mt-4 md:mt-8 justify-items-center">
           {ThreePuzzle.map((puzzle) => (
             <Puzzle
-              className={puzzle.id === 2 ? "self-start" : "self-end"}
+              className={puzzle.id === 2 ? "col-start-1 col-end-3 row-start-1" : "self-end"}
               key={puzzle.id}
               icon={puzzle.icon}
-              state={puzzle.state as StateType}
+              state={puzzle.state}
               text={puzzle.title}
               size={windowWidth > 780 ? "small" : "mobile"}
               iconFar
@@ -57,10 +57,27 @@ function App() {
         </div>
       </section>
 
-      <TitleHead
-        header="پـرفــروش تـرین های لــــوزی"
-        desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
-      />
+      <section>
+        <TitleHead
+          header="پـرفــروش تـرین های لــــوزی"
+          desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
+        />
+        <div className="grid grid-cols-1 gap-y-18 md:gap-y-10 2xl:gap-y-36 gap-x-4 justify-items-center my-4 md:my-12 md:grid-cols-3 md:grid-rows-2 md:grid-flow-col">
+          {PuzzleFull.map((puzzle) => (
+            <Puzzle
+              className={puzzle.id == 3 ? "mb-4 md:mb-20" : ""}
+              key={puzzle.id}
+              state={puzzle.state}
+              text={puzzle.title}
+              icon={puzzle.icon}
+              size={windowWidth > 1536 ? "lg" : "small"}
+              isActive={puzzle.id == 1 && true}
+            />
+          ))}
+        </div>
+      </section>
+
+      <Cart type="product"/>
     </>
   );
 }

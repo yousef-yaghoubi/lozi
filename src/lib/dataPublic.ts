@@ -1,3 +1,5 @@
+import type { StateType } from "@/types/Puzzle";
+
 export const navbarData = [
   { id: 1, title: "صفحه اصلی", link: "/" },
   { id: 2, title: "وبلاگ", link: "/blog" },
@@ -24,16 +26,22 @@ export const LinksForSocialFooter = [
   { id: 3, name: "linkedin", link: "#" },
 ];
 
-export const PuzzleFull = [
+interface PuzzleType{
+  id: number;
+  title: string;
+  icon: string;
+  state: StateType
+}
+export const PuzzleFull: PuzzleType[] = [
   { id: 1, title: "کیت رابط کاربری", icon: "browser", state: "topToRight" },
-  { id: 4, title: "آیکن ست", icon: "puzzle", state: "bottomToLeft" },
-  { id: 2, title: "ایلاستریشن", icon: "nib", state: "topToBottom" },
-  { id: 5, title: "ماکاپ", icon: "computer", state: "bottomToTop" },
-  { id: 3, title: "دیزاین سیستم", icon: "layers", state: "topToLeft" },
+  { id: 2, title: "آیکن ست", icon: "puzzle", state: "bottomToLeft" },
+  { id: 3, title: "ایلاستریشن", icon: "nib", state: "topToBottom" },
+  { id: 4, title: "ماکاپ", icon: "computer", state: "bottomToTop" },
+  { id: 5, title: "دیزاین سیستم", icon: "layers", state: "topToLeft" },
   { id: 6, title: "آبجکت سه بعدی", icon: "objectBox", state: "bottomToRight" },
 ];
 
-export const ThreePuzzle = [
+export const ThreePuzzle:PuzzleType[] = [
   {
     id: 1,
     title: "کیفیت تضمینی فایل‌ها",
