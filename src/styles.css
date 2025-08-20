@@ -617,13 +617,13 @@
   right: -5px !important;
   border-top: 1px solid var(--color-primary);
   border-left: 1px solid var(--color-primary);
+  border-bottom: none;
   border-radius: 8px 0 0 0;
 
   &::after,
   &::before {
     content: "";
     position: absolute;
-    box-shadow: -5px -5px 0 5px white;
     border-top: 1px solid var(--color-primary);
     border-left: 1px solid var(--color-primary);
     transition: box-shadow 0.3s, border-color 0.3s;
@@ -642,15 +642,18 @@
     }
     &::after,
     &::before {
+      /* box-shadow: -5px -5px 0 5px white; */
       border-top: 2px solid var(--color-primary);
       border-left: 2px solid var(--color-primary);
       border-start-end-radius: 20px;
       height: 20px;
       width: 20px;
+      box-shadow: -5px -5px 0px 5px white !important;
     }
 
     &::after {
       left: -20px !important;
+      bottom: 0 !important;
     }
     &::before {
       top: -20px !important;
@@ -659,10 +662,12 @@
 
   &::after {
     left: -10px;
-    bottom: 0;
+    bottom: 3px;
     rotate: 180deg;
+    box-shadow: -3px -3px 0px 3px white;
   }
   &::before {
+    box-shadow: -3px -2px 0px 1px white;
     right: 0;
     top: -10px;
     rotate: 180deg;

@@ -1,13 +1,24 @@
+import { useState } from "react";
 import { numberToPersian } from "@/lib/numberToPersian";
 import IconHeart from "@icons/Heart.svg?react";
 import IconPolygon from "@icons/Polygon1.svg?react";
 import IconLeft from "@icons/direaction-left.svg?react";
 import Button from "./Button";
+import useWindowWidth from "@/hooks/WindowWidth";
+
 function Cart({ type }: { type: "product" | "blog" }) {
   const price = 350000;
-  if (type == "product") {
+  const [isHovered, setIsHovered] = useState(false);
+  const width = useWindowWidth()
+
+
+  if (type === "product") {
     return (
-      <div className="flex flex-col w-full max-w-[165px] md:max-w-[432px] h-48 md:h-[496px] bg-white border md:border-2 border-primary rounded-[10px] md:rounded-2.5xl px-1 pb-2 pt-4 md:px-4 md:pt-6 md:pb-4 relative">
+      <div
+        className="flex flex-col w-full max-w-[165px] md:max-w-[432px] h-48 md:h-[496px] bg-white border md:border-2 border-primary rounded-[10px] md:rounded-2.5xl px-1 pb-2 pt-4 md:px-4 md:pt-6 md:pb-4 relative"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         <>
           <img src="/images/imageCart.jpg" className="mx-1 md:mx-0" />
           <h5 className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400">
@@ -37,10 +48,10 @@ function Cart({ type }: { type: "product" | "blog" }) {
             <span className="m-caption-sm w-text-md">تومان</span>
           </div>
         </>
-        <div className="w-[45%] h-8 md:h-[76px] bg-white pl-2 pt-2 md:pl-4 md:pt-4 boxForCardProduct">
-          <Button btn="stroke" size="medium" className="w-full">
+        <div className="w-[45%] h-8 md:h-[76px] bg-white pl-2  pt-1 md:pl-4 md:pt-4 boxForCardProduct">
+          <Button btn={isHovered ? "fill" : "stroke"} size={width > 768 ? "medium" : "superSmall"} className="w-full">
             <span>خرید</span>
-            <IconLeft className="w-2.5 h-2.5 md:w-5 md:h-5"/>
+            <IconLeft className="w-2.5 h-2.5 md:w-5 md:h-5" />
           </Button>
         </div>
       </div>

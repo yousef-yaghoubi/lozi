@@ -14,11 +14,10 @@ const Button: React.FC<ButtonProps> = ({
   size,
   ...rest
 }) => {
-  
   function GetClassName(btn: "text" | "stroke" | "fill") {
     const baseClass = `flex items-center justify-evenly duration-300 transition-all cursor-pointer ${
       size == "superSmall"
-        ? " h-6 rounded-sm m-caption-sm-bold px-2 py-[5px]"
+        ? " h-6 rounded-sm m-caption-sm-bold px-2 py-[5px] !border-1 "
         : size == "small"
         ? " h-10 rounded-md w-caption-md-bold "
         : size == "medium"
