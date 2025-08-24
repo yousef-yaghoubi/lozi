@@ -613,7 +613,7 @@
 
 @utility boxForCardProduct {
   position: relative;
-  bottom: -9px !important;
+  bottom: -15px !important;
   right: -5px !important;
   border-top: 1px solid var(--color-primary);
   border-left: 1px solid var(--color-primary);
@@ -642,7 +642,6 @@
     }
     &::after,
     &::before {
-      /* box-shadow: -5px -5px 0 5px white; */
       border-top: 2px solid var(--color-primary);
       border-left: 2px solid var(--color-primary);
       border-start-end-radius: 20px;
@@ -662,7 +661,7 @@
 
   &::after {
     left: -10px;
-    bottom: 3px;
+    bottom: 12%;
     rotate: 180deg;
     box-shadow: -3px -3px 0px 3px white;
   }
@@ -671,5 +670,80 @@
     right: 0;
     top: -10px;
     rotate: 180deg;
+  }
+}
+
+@utility boxForCardBlog {
+  position: relative;
+  bottom: -1px !important;
+  right: 0;
+  left: 0;
+  margin: auto;
+  border-top: 1px solid var(--color-primary);
+  border-left: 1px solid var(--color-primary);
+  border-right: 1px solid var(--color-primary);
+  border-bottom: none;
+  border-radius: 8px 8px 0 0;
+
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    border-top: 1px solid var(--color-primary);
+    border-left: 1px solid var(--color-primary);
+    /* border-right: 1px solid var(--color-primary); */
+    transition: box-shadow 0.3s, border-color 0.3s;
+    border-start-end-radius: 8px;
+    height: 10px;
+    width: 10px;
+  }
+
+  @media (width > 472px) {
+    & {
+      bottom: -2px !important;
+    }
+  }
+
+  @media (width >= 48rem /* 768px */) {
+    & {
+      border-top: 2px solid var(--color-primary);
+      border-left: 2px solid var(--color-primary);
+      border-right: 2px solid var(--color-primary);
+      border-radius: 20px 20px 0 0;
+      bottom: -9px !important;
+      /* right: -18px !important; */
+    }
+    &::after,
+    &::before {
+      border-top: 2px solid var(--color-primary);
+      border-left: 2px solid var(--color-primary);
+      /* border-right: 2px solid var(--color-primary); */
+      border-start-end-radius: 20px;
+      height: 20px;
+      width: 20px;
+      box-shadow: -5px -5px 0px 5px white !important;
+    }
+
+    &::after {
+      left: -20px !important;
+      bottom: 1px !important;
+    }
+    &::before {
+      bottom: 1px !important;
+      right: -20px !important;
+    }
+  }
+
+  &::after {
+    left: -10px;
+    bottom: 13%;
+    rotate: 180deg;
+    box-shadow: -3px -3px 0px 3px white;
+  }
+  &::before {
+    box-shadow: -3px -3px 0px 2px white;
+    right: -10px;
+    bottom: 13%;
+    rotate: 270deg;
   }
 }

@@ -1,7 +1,7 @@
 import { linksForFooter1, linksForFooter2 } from "@/lib/dataPublic";
+import IconCBig from "@icons/VectorCBig.svg?react";
 import SocialFooter from "./SocialFooter";
 import UlForFooter from "./UlForFooter";
-import IconCBig from "/public/images/VectorCBig.svg?react";
 function Footer() {
   return (
     <footer className="h-[600px] footer sm:h-[552px] overflow-hidden w-full bg-black-50 rounded-t-3xl m-text-sm text-black-300 md:w-text-sm px-[17px] pb-0 pt-7 md:p-10 md:pb-11 flex flex-col relative">

@@ -1,25 +1,14 @@
 import IconSearch from "@icons/search.svg?react";
 import Button from "../Button";
-import ShapeTexture from "/public/images/FullShapes.svg?react";
+import PublicBanner from "./PublicBanner";
+
 function HomePage() {
   return (
-    <div className="h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 md:mb-7 m-auto relative">
-      <>
-        <div className="md:w-[calc(100%_-_480px)] lg:w-auto">
-          <h3 className="m-h3 md:w-h4 lg:w-h2 text-white">
-            الـهام بـگیر، طـراحی‌کن،بـدرخش
-          </h3>
-          <p className="m-text lg:w-text-lg text-white">
-            هـمه چـیز بـرای یـک طـراحی بـی‌نقص، در یـک جـا
-          </p>
-        </div>
-        <img
-          src="/images/iliustration/homePage.png"
-          alt="home page"
-          className="h-[236px] md:h-[260px] lg:h-[356px] absolute left-0 bottom-0 z-10"
-        />
-        <ShapeTexture className="absolute right-0 top-0" />
-      </>
+    <PublicBanner
+      title="الـهام بـگیر، طـراحی‌کن،بـدرخش"
+      desc="هـمه چـیز بـرای یـک طـراحی بـی‌نقص، در یـک جـا"
+      srcImage="/images/iliustration/homePage.png"
+    >
       <div className="hidden md:flex h-36 w-1/2 boxForRounded bg-white rounded-se-3xl absolute right-0 bottom-0 homePage p-7 pr-0 flex-col gap-y-6">
         <div className="flex w-full justify-between gap-x-4">
           <Button
@@ -55,7 +44,7 @@ function HomePage() {
           </Button>
         </div>
       </div>
-    </div>
+    </PublicBanner>
   );
 }
 

@@ -17,12 +17,12 @@ const Button: React.FC<ButtonProps> = ({
   function GetClassName(btn: "text" | "stroke" | "fill") {
     const baseClass = `flex items-center justify-evenly duration-300 transition-all cursor-pointer ${
       size == "superSmall"
-        ? " h-6 rounded-sm m-caption-sm-bold px-2 py-[5px] !border-1 "
+        ? " h-6 rounded-sm m-caption-sm-bold px-2 py-[5px] !border-1 gap-1 "
         : size == "small"
-        ? " h-10 rounded-md w-caption-md-bold "
+        ? " h-10 rounded-md w-caption-md-bold px-4 py-3 gap-2.5 "
         : size == "medium"
-        ? " h-14 rounded-lg w-text-sm-bold "
-        : " h-16 rounded-xl w-text-md-bold px-10 py-[18px] "
+        ? " h-14 rounded-lg w-text-sm-bold px-8 py-[15px] gap-2.5 "
+        : " h-16 rounded-xl w-text-md-bold px-10 py-[18px] gap-3 "
     }`;
     const textClass =
       "text-primary hover:text-primary-500 disabled:text-white-600";
