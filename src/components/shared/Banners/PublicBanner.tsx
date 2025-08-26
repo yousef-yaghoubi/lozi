@@ -22,7 +22,7 @@ function PublicBanner({
       )}
     >
       <>
-        <div className="md:w-[calc(100%_-_480px)] lg:w-auto">
+        <div className="md:w-full lg:w-[79%] xl:w-full">
           <h3 className="m-h3 md:w-h4 lg:w-h2 text-white">{title}</h3>
           <p className="m-text lg:w-text-lg text-white">{desc}</p>
         </div>

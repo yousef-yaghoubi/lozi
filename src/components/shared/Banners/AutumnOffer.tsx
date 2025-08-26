@@ -1,5 +1,5 @@
 import IconLeft from "@icons/direaction-left.svg?react";
-import Button from "../Button";
+import Button from "../Button/Button";
 import PublicBanner from "./PublicBanner";
 
 function AutumnOffer() {

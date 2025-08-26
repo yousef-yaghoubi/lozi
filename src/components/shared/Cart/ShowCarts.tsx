@@ -1,24 +1,26 @@
 import useWindowWidth from "@/hooks/WindowWidth";
 import type { BlogCart, ProductCart } from "@/types/Cart";
 import IconLeft from "@icons/direaction-left.svg?react";
-import Button from "./Button";
+import Button from "../Button/Button";
+import TitleHead from "../TitleHead";
 import Cart from "./Cart";
-import TitleHead from "./TitleHead";
+import { cn } from "@/lib/clsx";
 
 type ProductWithType = { carts: ProductCart[]; type: "product" };
 type BlogWithType = { carts: BlogCart[]; type: "blog" };
 
-type ShowCartsProps = (ProductWithType | BlogWithType) & {title: string, desc: string};
+type ShowCartsProps = (ProductWithType | BlogWithType) & {
+  title: string;
+  desc: string;
+  className?: string;
+};
 
-function ShowCarts({ type, carts, title, desc }: ShowCartsProps) {
+function ShowCarts({ type, carts, title, desc, className }: ShowCartsProps) {
   const width = useWindowWidth();
 
   return (
-    <section className="flex flex-col justify-around gap-y-4 md:gap-y-6">
-      <TitleHead
-        header={title}
-        desc={desc}
-      />
+    <section className={cn("flex flex-col justify-around gap-y-4 md:gap-y-6", className)}>
+      <TitleHead header={title} desc={desc} />
 
       {/* دکمه دسکتاپ */}
       <Button

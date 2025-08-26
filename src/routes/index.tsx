@@ -1,11 +1,13 @@
-import AutumnOffer from "@/components/shared/Banners/AutumnOffer";
-import HomePage from "@/components/shared/Banners/HomePage";
-import Puzzle from "@/components/shared/Puzzle";
-import ShowCarts from "@/components/shared/ShowCarts";
-import TitleHead from "@/components/shared/TitleHead";
 import useWindowWidth from "@/hooks/WindowWidth";
-import { PuzzleFull, ThreePuzzle } from "@/lib/dataPublic";
-import type { ProductCart } from "@/types/Cart";
+import { PuzzleFull } from "@/lib/dataPublic";
+import type { BlogCart, ProductCart } from "@/types/Cart";
+import AutumnOffer from "@components/Banners/AutumnOffer";
+import HomePage from "@components/Banners/HomePage";
+import ShowCarts from "@components/Cart/ShowCarts";
+import Puzzle from "@components/Puzzle";
+import ShowPuzzlesMain from "@components/ShowPuzzlesMain";
+import TitleHead from "@components/TitleHead";
+import IconSupport from "@icons/supportIcon.svg?react";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
@@ -36,46 +38,47 @@ export const products: ProductCart[] = [
   },
 ];
 
+export const blogs: BlogCart[] = [
+  {
+    id: 1,
+    title: "چطور در ۳۰ روز React را حرفه‌ای یاد بگیریم",
+    desc: "این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.",
+  },
+  {
+    id: 2,
+    title: "بهینه‌سازی عملکرد وب‌سایت با Tailwind CSS",
+    desc: "در این مطلب نکات و تکنیک‌های بهینه‌سازی استایل‌ها و افزایش سرعت لود سایت با Tailwind CSS بررسی شده است.",
+  },
+  {
+    id: 3,
+    title: "۱۰ کتاب برتر برای توسعه‌دهندگان فرانت‌اند",
+    desc: "لیستی از کتاب‌های ضروری برای هر فرانت‌اند دولوپر همراه با توضیح کوتاه درباره هر کتاب.",
+  },
+  {
+    id: 4,
+    title: "مقایسه Next.js و Remix در سال ۲۰۲۵",
+    desc: "این مقاله مزایا و معایب هر فریمورک را بررسی کرده و نشان می‌دهد کدام برای پروژه شما مناسب‌تر است.",
+  },
+  {
+    id: 5,
+    title: "چطور پروژه‌های TypeScript را بهینه مدیریت کنیم",
+    desc: "روش‌ها و الگوهای برتر برای ساختاردهی و مدیریت پروژه‌های بزرگ TypeScript.",
+  },
+];
+
 function App() {
   const width = useWindowWidth();
 
   return (
     <>
       <HomePage />
-      
-      <section className="flex flex-col w-full items-center my-4 md:my-16">
-        <div className="max-w-2xl flex flex-col items-center">
-          <h2 className="m-h2 md:w-h5 text-center">
-            پـروژه‌ت رو بـا مـا کـامل کـن!
-          </h2>
-          <h4 className="m-h5 md:w-h7 text-black-200">
-            هر قطعه‌ای که برای طراحی نیاز داری، اینجاست
-          </h4>
-        </div>
-        <div className="w-full max-w-2xl gap-y-12 md:gap-y-2 grid grid-rows-2 grid-cols-2 mt-4 md:mt-8 justify-items-center">
-          {ThreePuzzle.map((puzzle) => (
-            <Puzzle
-              className={
-                puzzle.id === 2
-                  ? "col-start-1 col-end-3 row-start-1"
-                  : "self-end"
-              }
-              key={puzzle.id}
-              icon={puzzle.icon}
-              state={puzzle.state}
-              text={puzzle.title}
-              size={width > 780 ? "small" : "mobile"}
-              iconFar
-              isActive
-            />
-          ))}
-        </div>
-      </section>
+
+      <ShowPuzzlesMain />
 
       <section>
         <TitleHead
-          header="پـرفــروش تـرین های لــــوزی"
-          desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
+          header="دستــه بـندی ها فـایـل ها"
+          desc="قطعه های پروژت براساس نوع"
         />
         <div className="grid grid-cols-1 gap-y-18 md:gap-y-10 2xl:gap-y-36 gap-x-4 justify-items-center my-4 md:my-12 md:grid-cols-3 md:grid-rows-2 md:grid-flow-col">
           {PuzzleFull.map((puzzle) => (
@@ -107,6 +110,17 @@ function App() {
         title="پـرفــروش تـرین های لــــوزی"
         desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
       />
+
+      <ShowCarts
+        carts={blogs.filter((index) => index.id <= 3)}
+        type="blog"
+        title="وبــلاگ لــــوزی"
+        desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
+        className="mt-10 md:mt-[72px]"
+      />
+      <div className="absolute top-[60em] right-20 border-2 border-primary rounded-full p-2 hidden md:flex">
+        <IconSupport className="" />
+      </div>
     </>
   );
 }

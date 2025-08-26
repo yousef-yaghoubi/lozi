@@ -1,5 +1,5 @@
 import IconSearch from "@icons/search.svg?react";
-import Button from "../Button";
+import Button from "../Button/Button";
 import PublicBanner from "./PublicBanner";
 
 function HomePage() {

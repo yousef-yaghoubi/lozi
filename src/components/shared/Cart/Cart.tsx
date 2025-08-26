@@ -8,7 +8,8 @@ import IconPolygon from "@icons/Polygon1.svg?react";
 import IconCBig from "@icons/VectorCBig.svg?react";
 import IconLeft from "@icons/direaction-left.svg?react";
 import { useState } from "react";
-import Button from "./Button";
+import Button from "@components/Button/Button";
+
 type ProductCartFull = ProductCart & {
   type: "product";
 };
