@@ -8,19 +8,19 @@ export const Route = createRootRoute({
   component: () => (
     <>
       <Navbar />
-      <main className="container">
+      <main className="container relative">
         <Outlet />
         <TanStackRouterDevtools />
+        <IconCBig
+          className="absolute top-0 -right-48 rotate-[20deg] text-primary stroke-3"
+          width={300}
+        />
+        <IconCBig
+          className="absolute top-80 -left-36 rotate-[20deg] text-primary stroke-3"
+          width={300}
+        />
       </main>
-      <IconCBig
-        className="absolute top-0 -right-48 rotate-[20deg] text-primary stroke-3"
-        width={300}
-      />
-      <IconCBig
-        className="absolute top-80 -left-36 rotate-[20deg] text-primary stroke-3"
-        width={300}
-      />
-      
+
       <Footer />
     </>
   ),
