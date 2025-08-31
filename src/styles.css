@@ -483,14 +483,29 @@
   }
 
   /* وقتی روی گروه هاور میشه */
-  .group:hover &::after,
-  .group:hover &::before,
-  .groupHovered &::before,
-  .groupHovered &::after {
+  .groupHovered &::after,
+  .groupHovered &::before {
     box-shadow: -5px -5px 0 5px var(--color-primary);
     border-top-color: white;
     border-left-color: white;
   }
+
+  @media (width > 768px) {
+    .group:hover &::after,
+    .group:hover &::before {
+      box-shadow: -5px -5px 0 5px var(--color-primary);
+      border-top-color: white;
+      border-left-color: white;
+    }
+  }
+
+  .group:hover :not(.groupHovered) &::after,
+  .group:hover :not(.groupHovered) &::before {
+    box-shadow: -5px -5px 0 5px var(--color-primary) !important;
+    border-top-color: white !important;
+    border-left-color: white;
+  }
+
   &.topToRight.lg::after {
     left: -1.24em;
     top: 0.1em;
