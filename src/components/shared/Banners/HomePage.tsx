@@ -1,7 +1,7 @@
 import IconSearch from "@icons/search.svg?react";
+import { motion } from "motion/react";
 import Button from "../Button/Button";
 import PublicBanner from "./PublicBanner";
-
 function HomePage() {
   return (
     <PublicBanner
@@ -9,7 +9,13 @@ function HomePage() {
       desc="هـمه چـیز بـرای یـک طـراحی بـی‌نقص، در یـک جـا"
       srcImage="/images/iliustration/homePage.png"
     >
-      <div className="hidden md:flex h-36 w-1/2 boxForRounded bg-white rounded-se-3xl absolute right-0 bottom-0 homePage p-7 pr-0 flex-col gap-y-6">
+      <motion.div
+        whileInView={{ x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        initial={{ x: 300 }}
+        className="hidden md:flex h-36 w-1/2 boxForRounded bg-white rounded-se-3xl absolute right-0 bottom-0 homePage p-7 pr-0 flex-col gap-y-6"
+      >
         <div className="flex w-full justify-between gap-x-4">
           <Button
             btn="stroke"
@@ -43,7 +49,7 @@ function HomePage() {
             ایلاستریشن ...
           </Button>
         </div>
-      </div>
+      </motion.div>
     </PublicBanner>
   );
 }

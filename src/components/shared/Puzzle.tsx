@@ -1,6 +1,7 @@
 import { cn } from "@/lib/clsx";
 import { IconPuzzels } from "@/lib/IndexIcon";
 import type { PuzzleProps, StateType } from "@/types/Puzzle";
+import { motion } from "motion/react";
 
 const parentClasses: Record<StateType, string> = {
   topToRight: "rounded-br-none",
@@ -113,7 +114,11 @@ function Puzzle({
   );
 
   return (
-    <div
+    <motion.div
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.5 }}
+      initial={{ y: 100, opacity: 0 }}
       className={cn(
         "relative group parenPuzzleRounded",
         isActive && "groupHovered",
@@ -181,7 +186,7 @@ function Puzzle({
           )}
         />
       )}
-    </div>
+    </motion.div>
   );
 }
 

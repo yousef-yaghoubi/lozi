@@ -1,17 +1,24 @@
 import useWindowWidth from "@/hooks/WindowWidth";
 import { ThreePuzzle } from "@/lib/dataPublic";
+import { motion } from "motion/react";
 import Puzzle from "./Puzzle";
 
 function ShowPuzzlesMain() {
   const width = useWindowWidth();
-  
+
   return (
-    <section className="flex flex-col w-full items-center my-4 md:my-16">
+    <motion.section
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+      viewport={{once: true}}
+      className="flex flex-col w-full items-center my-4 md:my-16"
+    >
       <div className="max-w-2xl flex flex-col items-center">
         <h2 className="m-h2 md:w-h5 text-center">
           پـروژه‌ت رو بـا مـا کـامل کـن!
         </h2>
-        <h4 className="m-h5 md:w-h7 text-black-200">
+        <h4 className="m-h5 md:w-h7 text-black-200 text-center">
           هر قطعه‌ای که برای طراحی نیاز داری، اینجاست
         </h4>
       </div>
@@ -31,7 +38,7 @@ function ShowPuzzlesMain() {
           />
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
 

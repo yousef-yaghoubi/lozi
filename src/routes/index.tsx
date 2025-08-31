@@ -118,7 +118,7 @@ function App() {
         desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
         className="mt-10 md:mt-[72px]"
       />
-      <div className="absolute top-[60em] right-20 border-2 border-primary rounded-full p-2 hidden md:flex">
+      <div className="absolute md:top-[50em] top-[60em] right-20 border-2 border-primary rounded-full p-2 hidden md:flex">
         <IconSupport className="" />
       </div>
     </>
