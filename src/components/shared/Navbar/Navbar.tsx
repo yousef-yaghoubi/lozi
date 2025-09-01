@@ -5,30 +5,34 @@ import ButtonIcon from "@components/Button/ButtonIcon";
 import IconMenu from "@icons/menu.svg?react";
 import IconShoppingBasket from "@icons/shoppingBasket.svg?react";
 import IconUser from "@icons/user.svg?react";
+import { useLocation } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import NavContent from "./NavContent";
-
 
 function Navbar() {
   const width = useWindowWidth();
   const [showMenu, setShowMenu] = useState(false);
+  const router = useLocation();
+  // useEffect(() => {
+  //   const html = document.documentElement;
+  //   if (showMenu) {
+  //     html.classList.add("overflow-y-hidden");
+  //   } else {
+  //     html.classList.remove("overflow-y-hidden");
+  //   }
+
+  //   // Cleanup on unmount
+  //   return () => {
+  //     html.classList.remove("overflow-y-hidden");
+  //   };
+  // }, [showMenu]);
 
   useEffect(() => {
-    const html = document.documentElement;
-    if (showMenu) {
-      html.classList.add("overflow-y-hidden");
-    } else {
-      html.classList.remove("overflow-y-hidden");
-    }
-
-    // Cleanup on unmount
-    return () => {
-      html.classList.remove("overflow-y-hidden");
-    };
-  }, [showMenu]);
+    setShowMenu(false);
+  }, [router.pathname]);
 
   return (
-    <nav className="w-full h-10 md:h-14 relative flex justify-between md:justify-around items-center mt-4 md:mt-11 mb-8 md:mb-[88px] px-8">
+    <nav className="w-full h-[70px] md:h-14 fixed top-0 z-20 md:relative flex justify-between md:justify-around items-center md:mt-11 px-8 bg-white">
       <img
         alt="logo"
         src="/logo-lg.png"
@@ -60,7 +64,7 @@ function Navbar() {
 
       <div
         className={cn(
-          "w-full h-[calc(100dvh_-_4rem)] overflow-hidden bg-white/60 backdrop-blur-lg absolute right-0 top-12 transition-all ease-linear duration-300 z-20 md:hidden flex flex-col justify-between",
+          "w-full h-[calc(100dvh_-_70px)] overflow-hidden bg-white/60 backdrop-blur-lg absolute right-0 top-[70px] transition-all ease-linear duration-300 z-20 md:hidden flex flex-col justify-between",
           showMenu ? "flex max-h-screen p-4" : "max-h-0"
         )}
       >
@@ -74,8 +78,8 @@ function Navbar() {
           </Button>
           <Button btn="fill" size="small" className="w-full lg:w-48">
             <span className="flex gap-1 items-center">
-            <IconUser />
-            <>ورود / ثبت نام</>
+              <IconUser />
+              <>ورود / ثبت نام</>
             </span>
           </Button>
         </div>

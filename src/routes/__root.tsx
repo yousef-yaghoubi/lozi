@@ -8,7 +8,7 @@ export const Route = createRootRoute({
   component: () => (
     <>
       <Navbar />
-      <main className="container relative">
+      <main className="container relative mt-[88px] md:mt-[132px]">
         <Outlet />
         <TanStackRouterDevtools />
         <IconCBig
