@@ -23,23 +23,26 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
   return (
     <div
       ref={ref}
-      className="flex flex-col w-[90%] max-w-80 md:max-w-[30em] h-[115%] bg-white border md:border-2 border-primary rounded-[10px] md:rounded-2.5xl px-1 pb-2 pt-2 md:px-4 md:pt-6 md:pb-4 relative"
+      className="flex flex-col w-[90%] max-w-80 md:max-w-[30em] h-[115%] bg-background border md:border-2 border-primary rounded-[10px] md:rounded-2.5xl px-1 pb-2 pt-2 md:px-4 md:pt-6 md:pb-4 relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       {...rest}
     >
       <>
-        <img src="/images/imageCart.jpg" className="mx-1 md:mx-0 z-10" />
-        <h5 className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400">
+        <img
+          src="/images/imageCart.jpg"
+          className="mx-1 md:mx-0 z-10 rounded-2xl"
+        />
+        <h5 className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400 dark:text-white">
           {TruncateString(data.title, 20)}
         </h5>
         {data.type == "product" ? (
           <>
-            <div className="flex w-fit p-1 gap-x-1 md:gap-x-4 md:px-4 md:py-2 bg-black-50 m-caption-xs md:w-caption-lg items-center rounded-xs md:rounded-sm md:mt-2 text-black-400">
-              <button className="px-1 py-0.5 md:px-2.5 md:py-2 rounded-xs md:rounded-sm bg-white h-full">
+            <div className="flex w-fit p-1 gap-x-1 md:gap-x-4 md:px-4 md:py-2 bg-fourground m-caption-xs md:w-caption-lg items-center rounded-xs md:rounded-sm md:mt-2 text-black-400">
+              <button className="px-1 py-0.5 md:px-2.5 md:py-2 rounded-xs md:rounded-sm bg-background h-full">
                 <IconHeart className="text-black-100 w-2 md:w-5 h-fit" />
               </button>
-              <div className="flex px-1 py-0.5 md:py-2.5 md:px-[5px] gap-x-0.5 md:gap-x-[5px] rounded-xs md:rounded-sm bg-white items-center">
+              <div className="flex px-1 py-0.5 md:py-2.5 md:px-[5px] gap-x-0.5 md:gap-x-[5px] rounded-xs md:rounded-sm bg-background dark:text-white items-center">
                 <img
                   src="/images/teamProfile.png"
                   alt="profile"
@@ -48,10 +51,11 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
                 <span>{data.ownerTeam}</span>
               </div>
               <IconPolygon className="w-1.5 md:w-3" />
-              <div className="flex px-1 py-0.5 md:py-2.5 md:px-[5px] rounded-xs md:rounded-sm bg-white items-center">
+              <div className="flex px-1 py-0.5 md:py-2.5 md:px-[5px] rounded-xs md:rounded-sm bg-background dark:text-white items-center">
                 <span>{data.categorie}</span>
               </div>
             </div>
+
             <div className="flex items-center gap-1 md:gap-2 absolute bottom-2 md:bottom-4 left-[13px] md:left-8">
               <span className="m-caption-bold md:w-h6">
                 {numberToPersian(data.price.toLocaleString())}
@@ -60,7 +64,7 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
             </div>
           </>
         ) : (
-          <p className="m-caption-xs md:w-text-sm text-justify text-black-300">
+          <p className="m-caption-xs md:w-text-sm text-justify text-black-300 dark:text-gray-200">
             {TruncateString(data.desc, 120)}
           </p>
         )}
@@ -68,7 +72,7 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
 
       <div
         className={cn(
-          "min-w-[45%] w-fit min-h-8 h-[13%] md:h-[76px] bg-white z-10 absolute",
+          "min-w-[45%] w-fit min-h-8 h-[13%] md:h-[76px] bg-background z-10 absolute",
           data.type == "product"
             ? "boxForCardProduct pl-2  pt-1 md:pl-4 md:pt-4"
             : "boxForCardBlog px-2  pt-1 md:px-4 md:pt-4"

@@ -20,7 +20,7 @@ function PublicBanner({
   return (
     <div
       className={cn(
-        "h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 md:mb-7 m-auto relative",
+        "h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 md:mb-7 m-auto relative overflow-x-clip",
         className
       )}
     >
@@ -39,7 +39,7 @@ function PublicBanner({
         <motion.img
           src={srcImage}
           alt="home page"
-          className="h-[236px] md:h-[260px] lg:h-[356px] absolute left-0 bottom-0 z-10"
+          className="h-[236px] md:h-[260px] lg:h-[356px] absolute left-0 bottom-0 z-10 rounded-e-3xl"
           initial={{ x: width > 768 ? -300 : -150, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.6 }}

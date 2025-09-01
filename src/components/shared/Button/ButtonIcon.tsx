@@ -29,7 +29,7 @@ const ButtonIcon: React.FC<ButtonProps> = ({
     const strokeClass =
       "border-3 border-primary text-primary hover:text-primary-500 hover:border-primary-500 disabled:text-white-600 disabled:border-white-600";
     const fillClass =
-      "bg-primary hover:bg-primary-500 disabled:bg-white-600 disabled:text-white text-white";
+      "bg-primary hover:bg-primary-500 disabled:bg-background-600 disabled:text-white text-white";
 
     if (btn == "fill") {
       return baseClass + fillClass;

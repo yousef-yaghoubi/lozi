@@ -22,7 +22,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       const textClass =
         "text-primary hover:text-primary-500 disabled:text-white-600";
       const strokeClass =
-        "border-3 border-primary text-primary hover:text-primary-500 hover:border-primary-500 disabled:text-white-600 disabled:border-white-600";
+        "border-3 border-primary text-primary hover:text-primary-500 hover:border-primary-500 disabled:text-white-600 disabled:border-white-600 ";
       const fillClass =
         "bg-primary hover:bg-primary-500 disabled:bg-white-600 disabled:text-white text-white";
 
@@ -36,7 +36,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     return (
-      <button ref={ref} className={cn(GetClassName(btn), className)} {...rest}>
+      <button ref={ref} {...rest} className={cn(GetClassName(btn), className)}>
         {children}
       </button>
     );

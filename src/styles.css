@@ -1,7 +1,6 @@
 @import "tailwindcss";
-@plugin './lib/hero.ts';
-/* Note: You may need to change the path to fit your project structure */
-@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* @custom-variant dark (&:is(.dark *)); */
 /* Font Face Declarations */
 @font-face {
@@ -77,6 +76,10 @@
   /* Typography */
   --font-modam: "Modam", sans-serif;
 
+  --color-background: white;
+  --color-fourground: var(--color-black-50);
+  /* --color-background: rgb(14 35 56); */
+
   /* Brand Colors */
   --color-primary: #ff6f00;
   --color-primary-100: #ffe2cc;
@@ -149,6 +152,11 @@
   /* --border-width-10: 10px; */
 }
 
+@utility dark {
+  --color-background: rgb(14 35 56);
+  --color-fourground: rgb(27 49 76);
+  color: white;
+}
 /* Typography Component Classes */
 
 /* Base Typography Settings */
@@ -404,7 +412,7 @@
     height: 1.5rem;
     position: absolute;
     border-start-end-radius: 1.5rem;
-    box-shadow: -5px -5px 0 5px white;
+    box-shadow: -5px -5px 0 5px var(--color-background);
   }
 
   &.footer::after {
@@ -455,7 +463,7 @@
   &.topToBottom::before {
     content: "";
     position: absolute;
-    box-shadow: -5px -5px 0 5px white;
+    box-shadow: -5px -5px 0 5px var(--color-background);
     border-top: 3px solid var(--color-primary);
     border-left: 3px solid var(--color-primary);
     transition: box-shadow 0.3s, border-color 0.3s;
@@ -486,24 +494,24 @@
   .groupHovered &::after,
   .groupHovered &::before {
     box-shadow: -5px -5px 0 5px var(--color-primary);
-    border-top-color: white;
-    border-left-color: white;
+    border-top-color: var(--color-background);
+    border-left-color: var(--color-background);
   }
 
   @media (width > 768px) {
     .group:hover &::after,
     .group:hover &::before {
       box-shadow: -5px -5px 0 5px var(--color-primary);
-      border-top-color: white;
-      border-left-color: white;
+      border-top-color: var(--color-background);
+      border-left-color: var(--color-background);
     }
   }
 
   .group:hover :not(.groupHovered) &::after,
   .group:hover :not(.groupHovered) &::before {
     box-shadow: -5px -5px 0 5px var(--color-primary) !important;
-    border-top-color: white !important;
-    border-left-color: white;
+    border-top-color: var(--color-background) !important;
+    border-left-color: var(--color-background);
   }
 
   &.topToRight.lg::after {
@@ -662,7 +670,7 @@
       border-start-end-radius: 20px;
       height: 20px;
       width: 20px;
-      box-shadow: -5px -5px 0px 5px white !important;
+      box-shadow: -5px -5px 0px 5px var(--color-background) !important;
     }
 
     &::after {
@@ -678,10 +686,10 @@
     left: -10px;
     bottom: 12%;
     rotate: 180deg;
-    box-shadow: -3px -3px 0px 3px white;
+    box-shadow: -3px -3px 0px 3px var(--color-background);
   }
   &::before {
-    box-shadow: -3px -2px 0px 1px white;
+    box-shadow: -3px -2px 0px 1px var(--color-background);
     right: 0;
     top: -10px;
     rotate: 180deg;
@@ -736,7 +744,7 @@
       border-start-end-radius: 20px;
       height: 20px;
       width: 20px;
-      box-shadow: -5px -5px 0px 5px white !important;
+      box-shadow: -5px -5px 0px 5px var(--color-background) !important;
     }
 
     &::after {
@@ -753,10 +761,10 @@
     left: -10px;
     bottom: 13%;
     rotate: 180deg;
-    box-shadow: -3px -3px 0px 3px white;
+    box-shadow: -3px -3px 0px 3px var(--color-background);
   }
   &::before {
-    box-shadow: -3px -3px 0px 2px white;
+    box-shadow: -3px -3px 0px 2px var(--color-background);
     right: -10px;
     bottom: 13%;
     rotate: 270deg;

@@ -87,17 +87,19 @@ function Puzzle({
 
   // Style classes based on active state
   const parentBg = !isActive
-    ? "bg-white border-primary group-hover:bg-primary group-hover:border-white"
-    : "bg-primary border-white";
+    ? "bg-background border-primary group-hover:bg-primary group-hover:border-background"
+    : "bg-primary border-background";
 
   const childBg = !isActive
-    ? "bg-white border-primary group-hover:bg-primary group-hover:border-white group-hover:after:border-white"
-    : "bg-primary border-white after:border-white";
+    ? "bg-background border-primary group-hover:bg-primary group-hover:border-background group-hover:after:border-background"
+    : "bg-primary border-background after:border-background";
 
   const textColor = !isActive
     ? "text-primary group-hover:text-white"
     : "text-white";
-  const iconBg = !isActive ? "bg-primary group-hover:bg-white" : "bg-white";
+  const iconBg = !isActive
+    ? "bg-primary group-hover:bg-background"
+    : "bg-background";
   const iconTextColor = !isActive
     ? "text-white group-hover:text-primary"
     : "text-primary";

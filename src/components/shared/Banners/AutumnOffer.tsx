@@ -16,7 +16,7 @@ function AutumnOffer() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         initial={{ x: 300 }}
-        className="hidden md:flex w-fit h-fit boxForRounded bg-white rounded-se-3xl absolute right-0 bottom-0 homePage p-5 pr-0 flex-col gap-y-6"
+        className="hidden md:flex w-fit h-fit boxForRounded bg-background rounded-se-3xl absolute right-0 bottom-0 homePage p-5 pr-0 flex-col gap-y-6"
       >
         <Button btn="stroke" size="large">
           <span>همین حالا خریدت‌رو تکمیل کن</span>

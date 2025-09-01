@@ -4,8 +4,8 @@ import SocialFooter from "./SocialFooter";
 import UlForFooter from "./UlForFooter";
 function Footer() {
   return (
-    <footer className="h-[600px] footer sm:h-[552px] overflow-hidden w-full bg-black-50 rounded-t-3xl m-text-sm text-black-300 md:w-text-sm px-[17px] pb-0 pt-7 md:p-10 md:pb-11 flex flex-col relative">
-      <div className="min-w-28 w-1/3 h-14 bg-white absolute left-0 top-0 boxForRounded footer"></div>
+    <footer className="h-[600px] footer sm:h-[552px] overflow-hidden w-full bg-black-50 dark:bg-fourground rounded-t-3xl m-text-sm text-black-300 dark:text-gray-300 md:w-text-sm px-[17px] pb-0 pt-7 md:p-10 md:pb-11 flex flex-col relative">
+      <div className="min-w-28 w-1/3 h-14 bg-background absolute left-0 top-0 boxForRounded footer"></div>
       <>
         <img src="/logo-lg-full.png" alt="logo" className="w-40 md:w-72" />
         <div className="flex justify-around flex-col md:flex-row w-full xl:w-2/3 gap-x-3">

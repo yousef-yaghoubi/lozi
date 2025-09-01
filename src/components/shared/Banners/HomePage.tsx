@@ -14,7 +14,7 @@ function HomePage() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         initial={{ x: 300 }}
-        className="hidden md:flex h-36 w-1/2 boxForRounded bg-white rounded-se-3xl absolute right-0 bottom-0 homePage p-7 pr-0 flex-col gap-y-6"
+        className="hidden md:flex h-36 w-1/2 boxForRounded bg-background rounded-se-3xl absolute right-0 bottom-0 homePage p-7 pr-0 flex-col gap-y-6 z-20"
       >
         <div className="flex w-full justify-between gap-x-4">
           <Button
@@ -39,7 +39,7 @@ function HomePage() {
         </div>
 
         <div className="flex gap-x-5 m-caption-bold">
-          <Button btn="fill" size="superSmall" disabled>
+          <Button disabled btn="fill" size="superSmall" >
             آیکن پک...
           </Button>
           <Button btn="fill" size="superSmall" disabled>
