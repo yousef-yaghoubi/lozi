@@ -628,8 +628,8 @@
 
 @utility boxForCardProduct {
   position: relative;
-  bottom: -15px !important;
-  right: -5px !important;
+  bottom: -5px !important;
+  right: -1px !important;
   border-top: 1px solid var(--color-primary);
   border-left: 1px solid var(--color-primary);
   border-bottom: none;
@@ -652,8 +652,8 @@
       border-top: 2px solid var(--color-primary);
       border-left: 2px solid var(--color-primary);
       border-radius: 20px 0 0 0;
-      bottom: -30px !important;
-      right: -18px !important;
+      bottom: -2px !important;
+      right: -2px !important;
     }
     &::after,
     &::before {
