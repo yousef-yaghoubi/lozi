@@ -32,13 +32,17 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
         <img
           src="/images/imageCart.jpg"
           className="mx-1 md:mx-0 z-10 rounded-2xl"
+          alt="ImageProduct"
         />
         <h5 className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400 dark:text-white">
           {TruncateString(data.title, 20)}
         </h5>
         {data.type == "product" ? (
           <>
-            <div className="flex w-fit p-1 gap-x-1 md:gap-x-4 md:px-4 md:py-2 bg-fourground m-caption-xs md:w-caption-lg items-center rounded-xs md:rounded-sm md:mt-2 text-black-400">
+            <div
+              className="flex w-fit p-1 gap-x-1 md:gap-x-4 md:px-4 md:py-2 bg-fourground m-caption-xs md:w-caption-lg items-center rounded-xs md:rounded-sm md:mt-2 text-black-400"
+              aria-label="detailsForProduct"
+            >
               <button className="px-1 py-0.5 md:px-2.5 md:py-2 rounded-xs md:rounded-sm bg-background h-full">
                 <IconHeart className="text-black-100 w-2 md:w-5 h-fit" />
               </button>
@@ -64,7 +68,10 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
             </div>
           </>
         ) : (
-          <p className="m-caption-xs md:w-text-sm text-justify text-black-300 dark:text-gray-200">
+          <p
+            className="m-caption-xs md:w-text-sm text-justify text-black-300 dark:text-gray-200"
+            aria-label="descForBlog"
+          >
             {TruncateString(data.desc, 120)}
           </p>
         )}
@@ -83,7 +90,7 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
           size={width >= 768 ? "medium" : "superSmall"}
           className="w-full h-[90%] md:h-full"
         >
-          <span>{data.type == "product" ? "خرید" : "مشاهده مقاله"}</span>
+          <span aria-label="textButton">{data.type == "product" ? "خرید" : "مشاهده مقاله"}</span>
           <IconLeft className="w-2.5 h-2.5 md:w-5 md:h-5" />
         </Button>
       </div>

@@ -40,9 +40,6 @@ function Navbar() {
           src="/logo-type-small7.png"
           className="h-4 w-auto lg:h-10 dark:invert"
         />
-        {/* <span className="w-h4">
-        لوزی
-        </span> */}
       </div>
       <NavContent className="hidden md:flex" />
 
@@ -80,6 +77,7 @@ function Navbar() {
       </div>
 
       <div
+        data-testid="mobile-menu"
         className={cn(
           "w-full h-[calc(100dvh_-_70px)] overflow-hidden bg-background/60 backdrop-blur-lg absolute right-0 top-[70px] transition-all ease-linear duration-300 z-20 md:hidden flex flex-col justify-between",
           showMenu ? "flex max-h-screen p-4" : "max-h-0"

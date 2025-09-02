@@ -10,7 +10,10 @@ function TitleHead({ header, desc }: { header: string; desc: string }) {
       initial={{ y: 100, opacity: 0 }}
       className="relative"
     >
-      <IconLoziHead className="absolute -right-16 h-12 md:h-32 -z-10" />
+      <IconLoziHead
+        data-testid="icon-lozi-head"
+        className="absolute -right-16 h-12 md:h-32 -z-10"
+      />
       <h2 className="m-h5 md:w-h5 text-black-400 dark:text-gray-300">
         {header}
       </h2>

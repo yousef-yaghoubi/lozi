@@ -1,6 +1,5 @@
 import useWindowWidth from "@/hooks/WindowWidth";
-import { PuzzleFull } from "@/lib/dataPublic";
-import type { BlogCart, ProductCart } from "@/types/Cart";
+import { blogs, products, PuzzleFull } from "@/lib/dataPublic";
 import AutumnOffer from "@components/Banners/AutumnOffer";
 import HomePage from "@components/Banners/HomePage";
 import ShowCarts from "@components/Cart/ShowCarts";
@@ -14,57 +13,7 @@ export const Route = createFileRoute("/")({
   component: App,
   notFoundComponent: () => <p>404 not found</p>,
 });
-export const products: ProductCart[] = [
-  {
-    id: 1,
-    title: "کیت رابط کاربری موبایل",
-    ownerTeam: "تیم دیزاین آلفا",
-    categorie: "UI Kit",
-    price: 290000,
-  },
-  {
-    id: 2,
-    title: "مجموعه آیکن مینیمال",
-    ownerTeam: "Lozi Icons",
-    categorie: "Icons",
-    price: 120000,
-  },
-  {
-    id: 3,
-    title: "قالب داشبورد مدیریت",
-    ownerTeam: "Nextify Studio",
-    categorie: "Template",
-    price: 490000,
-  },
-];
 
-export const blogs: BlogCart[] = [
-  {
-    id: 1,
-    title: "چطور در ۳۰ روز React را حرفه‌ای یاد بگیریم",
-    desc: "این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.",
-  },
-  {
-    id: 2,
-    title: "بهینه‌سازی عملکرد وب‌سایت با Tailwind CSS",
-    desc: "در این مطلب نکات و تکنیک‌های بهینه‌سازی استایل‌ها و افزایش سرعت لود سایت با Tailwind CSS بررسی شده است.",
-  },
-  {
-    id: 3,
-    title: "۱۰ کتاب برتر برای توسعه‌دهندگان فرانت‌اند",
-    desc: "لیستی از کتاب‌های ضروری برای هر فرانت‌اند دولوپر همراه با توضیح کوتاه درباره هر کتاب.",
-  },
-  {
-    id: 4,
-    title: "مقایسه Next.js و Remix در سال ۲۰۲۵",
-    desc: "این مقاله مزایا و معایب هر فریمورک را بررسی کرده و نشان می‌دهد کدام برای پروژه شما مناسب‌تر است.",
-  },
-  {
-    id: 5,
-    title: "چطور پروژه‌های TypeScript را بهینه مدیریت کنیم",
-    desc: "روش‌ها و الگوهای برتر برای ساختاردهی و مدیریت پروژه‌های بزرگ TypeScript.",
-  },
-];
 
 function App() {
   const width = useWindowWidth();
