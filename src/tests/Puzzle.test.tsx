@@ -179,7 +179,7 @@ describe("Puzzle Component Tests", () => {
     });
 
     test("shows icon in child area when iconFar is true", () => {
-      const { container } = render(
+      render(
         <Puzzle
           state="topToBottom"
           size="lg"
