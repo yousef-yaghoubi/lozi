@@ -9,12 +9,16 @@ function PublicBanner({
   title,
   desc,
   className,
+  classNameForTitle,
+  classNameForImage,
 }: {
   children: ReactNode;
-  srcImage: string;
+  srcImage?: string;
   title: string;
   desc: string;
   className?: ComponentProps<"div">["className"];
+  classNameForTitle?: ComponentProps<"div">["className"];
+  classNameForImage?: ComponentProps<"image">["className"];
 }) {
   const width = useWindowWidth();
   return (
@@ -28,23 +32,32 @@ function PublicBanner({
         <motion.div
           whileInView={{ x: 0 }}
           transition={{ duration: 0.5 }}
-          initial={{ x: width > 768 ? 500 : 150 }}
+          initial={{ x: 200 }}
           viewport={{ once: true }}
-          className="md:w-full lg:w-[79%] xl:w-full"
+          className={cn("md:w-full lg:w-[79%] xl:w-full", classNameForTitle)}
         >
-          <h3 className="m-h3 md:w-h4 lg:w-h2 text-white">{title}</h3>
-          <p className="m-text lg:w-text-lg text-white">{desc}</p>
+          <h3 className="m-h3 md:w-h4 lg:w-h2 text-white whitespace-pre-line">
+            {title}
+          </h3>
+          <p className="m-text lg:w-text-lg text-white whitespace-pre-line">
+            {desc}
+          </p>
         </motion.div>
 
-        <motion.img
-          src={srcImage}
-          alt="home page"
-          className="h-[236px] md:h-[260px] lg:h-[356px] absolute left-0 bottom-0 z-10 rounded-e-3xl"
-          initial={{ x: width > 768 ? -300 : -150, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        />
+        {srcImage && (
+          <motion.img
+            src={srcImage}
+            alt="home page"
+            className={cn(
+              "h-[236px] md:h-[260px] lg:h-[356px] absolute left-0 bottom-0 z-10 rounded-e-3xl",
+              classNameForImage
+            )}
+            initial={{ x: width > 768 ? -300 : -150, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          />
+        )}
         <ShapeTexture className="absolute right-0 top-0" />
       </>
       {children}

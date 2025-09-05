@@ -770,3 +770,45 @@
     rotate: 270deg;
   }
 }
+
+@utility childRoundedPuzzle {
+  &::after {
+    content: "";
+    position: absolute;
+    transition: box-shadow 0.3s, border-color 0.3s;
+    box-shadow: -5px -5px 0px 5px var(--color-background) !important;
+    border-start-end-radius: var(--radius-2\.5xl);
+    height: 20px;
+    width: 20px;
+  }
+
+  &::after {
+    left: -1.26em;
+    rotate: 90deg;
+    top: 0em;
+  }
+}
+
+@utility parentRoundedPuzzle {
+  &::after,
+  &::before {
+    content: "";
+    position: absolute;
+    transition: box-shadow 0.3s, border-color 0.3s;
+    box-shadow: -5px -5px 0px 5px var(--color-background) !important;
+    border-start-end-radius: var(--radius-2\.5xl);
+    height: 20px;
+    width: 20px;
+  }
+
+  &::before {
+    right: -1.26em;
+    rotate: 0;
+    top: 1em;
+  }
+
+  &::after {
+    bottom: -20px;
+    left: 0;
+  }
+}

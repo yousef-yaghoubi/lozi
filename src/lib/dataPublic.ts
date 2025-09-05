@@ -3,8 +3,9 @@ import type { StateType } from "@/types/Puzzle";
 
 export const navbarData = [
   { id: 1, title: "صفحه اصلی", link: "/" },
-  { id: 2, title: "وبلاگ", link: "/blog" },
-  { id: 3, title: "درباره ما", link: "/about" },
+  { id: 2, title: "محصولات", link: "/products" },
+  { id: 3, title: "وبلاگ", link: "/blog" },
+  { id: 4, title: "درباره ما", link: "/about" },
 ];
 
 export const linksForFooter1 = [

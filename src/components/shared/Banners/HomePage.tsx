@@ -17,14 +17,10 @@ function HomePage() {
         className="hidden md:flex h-36 w-1/2 boxForRounded bg-background rounded-se-3xl absolute right-0 bottom-0 homePage p-7 pr-0 flex-col gap-y-6 z-20"
       >
         <div className="flex w-full justify-between gap-x-4">
-          <Button
-            btn="stroke"
-            size="large"
-            disabled
-            className="m-text-bold xl:w-text-md-bold px-5 lg:px-10 w-full"
-          >
-            دانلود دیزاین سیستم سنت...
-          </Button>
+          <input
+            className="m-text-bold xl:w-text-md-bold px-5 lg:px-10 w-full border border-white-600 placeholder:text-white-600 rounded-xl outline-0"
+            placeholder="دانلود دیزاین سیستم سنت..."
+          />
 
           <Button
             btn="fill"
@@ -39,7 +35,7 @@ function HomePage() {
         </div>
 
         <div className="flex gap-x-5 m-caption-bold">
-          <Button disabled btn="fill" size="superSmall" >
+          <Button disabled btn="fill" size="superSmall">
             آیکن پک...
           </Button>
           <Button btn="fill" size="superSmall" disabled>

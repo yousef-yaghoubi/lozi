@@ -41,7 +41,8 @@ function Navbar() {
           className="h-4 w-auto lg:h-10 dark:invert"
         />
       </div>
-      <NavContent className="hidden md:flex" />
+
+      <NavContent className="hidden md:flex !w-fit 2xl:!w-1/3 gap-4 2xl:gap-0" />
 
       <div className="flex">
         <div className="w-full gap-2 lg:gap-4 hidden md:flex">

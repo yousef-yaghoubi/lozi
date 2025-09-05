@@ -14,7 +14,6 @@ export const Route = createFileRoute("/")({
   notFoundComponent: () => <p>404 not found</p>,
 });
 
-
 function App() {
   const width = useWindowWidth();
 
