@@ -5,10 +5,11 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   btn: "text" | "stroke" | "fill";
   children: ReactNode;
   size: "superSmall" | "small" | "medium" | "large";
+  color?: "primary" | "white";
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ btn, children, className, size, ...rest }, ref) => {
+  ({ btn, children, className, size, color = "primary", ...rest }, ref) => {
     function GetClassName(btn: "text" | "stroke" | "fill") {
       const baseClass = `flex items-center justify-evenly duration-300 transition-all cursor-pointer ${
         size == "superSmall"
@@ -19,12 +20,25 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           ? " h-14 rounded-lg w-text-sm-bold px-8 py-[15px] gap-2.5 "
           : " h-16 rounded-xl w-text-md-bold px-10 py-[18px] gap-3 "
       }`;
-      const textClass =
-        "text-primary hover:text-primary-500 disabled:text-white-600";
-      const strokeClass =
-        "border-3 border-primary text-primary hover:text-primary-500 hover:border-primary-500 disabled:text-white-600 disabled:border-white-600 ";
-      const fillClass =
-        "bg-primary hover:bg-primary-500 disabled:bg-white-600 disabled:text-white text-white";
+
+      const bgColor =
+        color === "primary"
+          ? "bg-primary hover:bg-primary-500"
+          : "bg-white hover:bg-gray-100";
+      const textColor =
+        color === "primary"
+          ? btn === "fill"
+            ? "text-white"
+            : "text-primary"
+          : btn !== "fill"
+          ? "text-white"
+          : "text-primary";
+      const borderColor =
+        color === "primary" ? "border-primary" : "border-white";
+
+      const textClass = `${textColor} hover:opacity-80 disabled:opacity-50`;
+      const strokeClass = `border-2 ${borderColor} ${textColor} hover:opacity-80 disabled:opacity-50`;
+      const fillClass = `${bgColor} ${textColor} disabled:opacity-50`;
 
       if (btn == "fill") {
         return baseClass + fillClass;
