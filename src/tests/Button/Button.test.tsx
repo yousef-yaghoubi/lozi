@@ -20,7 +20,7 @@ describe("Button component", () => {
     );
     const btn = screen.getByText("Primary Fill");
     expect(btn.className).toContain("bg-primary");
-    expect(btn.className).toContain("text-white");
+    expect(btn.className).toContain("text-background");
   });
 
   it("applies correct styles for stroke + primary", () => {
@@ -44,36 +44,36 @@ describe("Button component", () => {
     expect(btn.className).toContain("text-primary");
   });
 
-  it("applies correct styles for fill + white", () => {
+  it("applies correct styles for fill + background", () => {
     render(
-      <Button btn="fill" size="large" color="white">
-        White Fill
+      <Button btn="fill" size="large" color="background">
+        BG Fill
       </Button>
     );
-    const btn = screen.getByText("White Fill");
-    expect(btn.className).toContain("bg-white");
+    const btn = screen.getByText("BG Fill");
+    expect(btn.className).toContain("bg-background");
     expect(btn.className).toContain("text-primary");
   });
 
-  it("applies correct styles for stroke + white", () => {
+  it("applies correct styles for stroke + background", () => {
     render(
-      <Button btn="stroke" size="medium" color="white">
-        White Stroke
+      <Button btn="stroke" size="medium" color="background">
+        BG Stroke
       </Button>
     );
-    const btn = screen.getByText("White Stroke");
-    expect(btn.className).toContain("border-white");
-    expect(btn.className).toContain("text-white");
+    const btn = screen.getByText("BG Stroke");
+    expect(btn.className).toContain("border-background");
+    expect(btn.className).toContain("text-background");
   });
 
-  it("applies correct styles for text + white", () => {
+  it("applies correct styles for text + background", () => {
     render(
-      <Button btn="text" size="small" color="white">
-        White Text
+      <Button btn="text" size="small" color="background">
+        BG Text
       </Button>
     );
-    const btn = screen.getByText("White Text");
-    expect(btn.className).toContain("text-white");
+    const btn = screen.getByText("BG Text");
+    expect(btn.className).toContain("text-background");
   });
 
   it("forwards ref to button element", () => {

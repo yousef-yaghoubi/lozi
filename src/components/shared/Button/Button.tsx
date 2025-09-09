@@ -5,7 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   btn: "text" | "stroke" | "fill";
   children: ReactNode;
   size: "superSmall" | "small" | "medium" | "large";
-  color?: "primary" | "white";
+  color?: "primary" | "background";
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -24,17 +24,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       const bgColor =
         color === "primary"
           ? "bg-primary hover:bg-primary-500"
-          : "bg-white hover:bg-gray-100";
+          : "bg-background hover:bg-background/90";
       const textColor =
         color === "primary"
           ? btn === "fill"
-            ? "text-white"
+            ? "text-background"
             : "text-primary"
           : btn !== "fill"
-          ? "text-white"
+          ? "text-background"
           : "text-primary";
       const borderColor =
-        color === "primary" ? "border-primary" : "border-white";
+        color === "primary" ? "border-primary" : "border-background";
 
       const textClass = `${textColor} hover:opacity-80 disabled:opacity-50`;
       const strokeClass = `border-2 ${borderColor} ${textColor} hover:opacity-80 disabled:opacity-50`;
