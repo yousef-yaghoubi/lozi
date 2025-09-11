@@ -4,6 +4,7 @@ import viteReact from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
+import compression from "vite-plugin-compression2";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -11,6 +12,9 @@ export default defineConfig({
     TanStackRouterVite({ autoCodeSplitting: true }),
     viteReact(),
     tailwindcss(),
+    compression({
+      algorithms: ["gzip", "brotliCompress"],
+    }),
   ],
   resolve: {
     alias: {
