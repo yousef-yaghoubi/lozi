@@ -24,7 +24,7 @@ function PublicBanner({
   return (
     <div
       className={cn(
-        "h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 md:mb-7 m-auto relative overflow-x-clip",
+        "h-[424px] md:h-[432px] max-w-[1116px] bg-primary rounded-2xl md:rounded-3xl p-6 md:p-8 md:mb-7 m-auto relative overflow-clip md:overflow-y-visible overflow-x-clip",
         className
       )}
     >
@@ -36,10 +36,10 @@ function PublicBanner({
           viewport={{ once: true }}
           className={cn("md:w-full lg:w-[79%] xl:w-full", classNameForTitle)}
         >
-          <h3 className="m-h3 md:w-h4 lg:w-h2 text-white whitespace-pre-line">
+          <h3 className="m-h3 md:w-h4 lg:w-h2 text-background whitespace-pre-line">
             {title}
           </h3>
-          <p className="m-text lg:w-text-lg text-white whitespace-pre-line">
+          <p className="m-text lg:w-text-lg text-background whitespace-pre-line">
             {desc}
           </p>
         </motion.div>

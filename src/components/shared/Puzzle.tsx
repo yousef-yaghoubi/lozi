@@ -96,13 +96,13 @@ function Puzzle({
     : "bg-primary border-background after:border-background";
 
   const textColor = !isActive
-    ? "text-primary group-hover:text-white"
-    : "text-white";
+    ? "text-primary group-hover:text-background"
+    : "text-background";
   const iconBg = !isActive
     ? "bg-primary group-hover:bg-background"
     : "bg-background";
   const iconTextColor = !isActive
-    ? "text-white group-hover:text-primary"
+    ? "text-background group-hover:text-primary"
     : "text-primary";
 
   const baseParent = cn(

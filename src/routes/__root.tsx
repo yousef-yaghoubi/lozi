@@ -12,11 +12,11 @@ export const Route = createRootRoute({
         <Outlet />
         <TanStackRouterDevtools />
         <IconCBig
-          className="absolute top-0 -right-48 rotate-[20deg] text-primary stroke-3 -z-10"
+          className="absolute top-0 -right-48 rotate-[20deg] text-primary stroke-1 -z-10"
           width={300}
         />
         <IconCBig
-          className="absolute top-80 -left-36 rotate-[20deg] text-primary stroke-3 -z-10"
+          className="absolute top-80 -left-36 rotate-[20deg] text-primary stroke-1 -z-10"
           width={300}
         />
       </main>

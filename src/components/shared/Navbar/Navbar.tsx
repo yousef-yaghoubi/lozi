@@ -47,7 +47,7 @@ function Navbar() {
       <div className="flex">
         <div className="w-full gap-2 lg:gap-4 hidden md:flex">
           <ButtonIcon btn="fill" size={width < 1024 ? "small" : "medium"}>
-            <IconShoppingBasket className="w-5 h-5" />
+            <IconShoppingBasket className="w-5 h-5 text-background" />
           </ButtonIcon>
           <ButtonIcon
             btn="stroke"

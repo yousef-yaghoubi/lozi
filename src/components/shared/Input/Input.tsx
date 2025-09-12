@@ -1,17 +1,29 @@
 import { cn } from "@/lib/clsx";
 import type React from "react";
 import { useState, forwardRef } from "react";
-import { Eye, EyeOff, AlertCircle, Lock } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  AlertCircle,
+  Lock,
+  FileQuestionMark,
+  BadgeQuestionMark,
+  BadgeQuestionMarkIcon,
+  CircleQuestionMark,
+} from "lucide-react";
+import { numberToPersian } from "@/lib/numberToPersian";
 
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size"> {
-  label: string;
+  label?: string;
   size: "sm" | "md" | "lg";
   variant?: "default" | "error" | "disabled";
   helperText?: string;
   showPasswordToggle?: boolean;
   icon?: React.ReactNode;
   isRequired?: boolean;
+  colorLabel?: "background" | "primary";
+  mainColor?: "default" | "background";
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -26,6 +38,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       isRequired = false,
       className,
       type = "text",
+      colorLabel,
+      mainColor,
       disabled,
       ...props
     },
@@ -74,7 +88,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             <div
               className={cn(
                 "absolute right-4 top-1/2 -translate-y-1/2 z-10",
-                isDisabled ? "text-gray-400" : "text-gray-500"
+                isDisabled
+                  ? "text-gray-400"
+                  : mainColor == "background"
+                  ? "text-background"
+                  : "text-black-300"
               )}
             >
               {icon}
@@ -94,7 +112,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               showPasswordToggle ? "pl-10" : "",
 
               // Default state
-              !isError && !isDisabled && "border-black-300 text-gray-900",
+              !isError && !isDisabled && mainColor == "background"
+                ? "text-background border-background"
+                : "border-black-300 text-gray-900",
               !isError && !isDisabled && "focus:border-black",
 
               // Error state
@@ -105,7 +125,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 "border-black-100 bg-black-100 text-black-100 cursor-not-allowed",
 
               // Focus states
-              isFocused && !isError && !isDisabled && "border-black"
+              isFocused &&
+                !isError &&
+                !isDisabled &&
+                (mainColor === "background"
+                  ? "border-background"
+                  : "border-black")
             )}
             onFocus={(e) => {
               setIsFocused(true);
@@ -134,9 +159,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               // Colors based on state
               !isError &&
                 !isDisabled &&
-                (isFocused ? "text-black" : "text-black-300"),
+                (isFocused
+                  ? "text-black"
+                  : mainColor === "background"
+                  ? "text-background"
+                  : "text-black-300"),
               isError && "text-red-600",
               isDisabled && "text-gray-400",
+              colorLabel == "primary" ? "bg-primary" : "bg-background",
 
               // RTL support for Persian text
               "text-right"
@@ -154,7 +184,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
                 "absolute left-3 top-1/2 -translate-y-1/2 z-10",
                 isDisabled
                   ? "text-gray-400 cursor-not-allowed"
-                  : "text-gray-500 hover:text-gray-700"
+                  : "text-black-300 hover:text-gray-700"
               )}
               onClick={() => setShowPassword(!showPassword)}
               disabled={isDisabled}
@@ -169,13 +199,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               <Lock size={20} />
             </div>
           )}
-
-          {/* Error Icon */}
-          {isError && (
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 z-10 text-red-500">
-              <AlertCircle size={20} />
-            </div>
-          )}
         </div>
 
         {/* Helper Text */}
@@ -183,10 +206,26 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <div
             className={cn(
               "mt-1 text-sm text-right",
-              isError ? "text-red-600" : "text-gray-500"
+              isError
+                ? "text-red-600"
+                : mainColor === "background"
+                ? "text-background"
+                : "text-black-300"
             )}
           >
-            {helperText}
+            <div className="w-full flex justify-between px-3.5">
+              <span>
+                <CircleQuestionMark
+                  className="inline ml-1"
+                  width={size == "lg" ? 12 : size == "md" ? 10 : 8}
+                  height={size == "lg" ? 12 : size == "md" ? 10 : 8}
+                />
+                {helperText}
+              </span>
+              <span>
+                {numberToPersian(8)} / {numberToPersian(String(value).length)}
+              </span>
+            </div>
           </div>
         )}
       </div>
