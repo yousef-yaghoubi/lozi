@@ -4,11 +4,7 @@ import { useState, forwardRef } from "react";
 import {
   Eye,
   EyeOff,
-  AlertCircle,
   Lock,
-  FileQuestionMark,
-  BadgeQuestionMark,
-  BadgeQuestionMarkIcon,
   CircleQuestionMark,
 } from "lucide-react";
 import { numberToPersian } from "@/lib/numberToPersian";

@@ -2,7 +2,6 @@ import { cn } from "@/lib/clsx";
 import { IconPuzzels } from "@/lib/IndexIcon";
 import type { PuzzleProps, StateType } from "@/types/Puzzle";
 import { motion } from "motion/react";
-import IconCBig from "@icons/VectorCBig.svg?react";
 
 const parentClasses: Record<StateType, string> = {
   topToRight: "rounded-br-none",

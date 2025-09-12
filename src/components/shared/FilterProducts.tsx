@@ -19,7 +19,6 @@ import {
 import Input from "./Input/Input";
 import { Slider } from "../ui/slider";
 import { useState } from "react";
-import { numberToPersian } from "@/lib/numberToPersian";
 
 function FilterProducts() {
   const items = [
