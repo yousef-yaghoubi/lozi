@@ -60,7 +60,7 @@ function App() {
       />
 
       <ShowCarts
-        carts={blogs.filter((index) => index.id <= 3)}
+        carts={blogs.filter((index) => index._id <= 3)}
         type="blog"
         title="وبــلاگ لــــوزی"
         desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"

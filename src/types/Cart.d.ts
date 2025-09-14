@@ -1,12 +1,25 @@
 export interface ProductCart {
-  id: number;
-  title: string;
-  ownerTeam: string;
-  categorie: string;
+  _id: string;
+  name: string;
+  slug: string;
+  description: string;
+  image: string;
+  images: string[];
+  countInStock: number;
+  isAvailable: boolean;
+  brand: string;
+  category: string;
+  rating: number;
+  numReviews: number;
   price: number;
+  discount: number;
+  discountedPrice: number;
+  createdAt: string;
+  updatedAt: string;
 }
 export interface BlogCart {
-  id: number;
-  title: string;
-  desc: string;
+  _id: number;
+  image: string;
+  name: string;
+  description: string;
 }

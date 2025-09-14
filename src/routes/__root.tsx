@@ -10,7 +10,6 @@ export const Route = createRootRoute({
       <Navbar />
       <main className="container relative mt-[88px] md:mt-[132px] min-h-screen">
         <Outlet />
-        <TanStackRouterDevtools />
         <IconCBig
           className="absolute top-0 -right-48 rotate-[20deg] text-primary stroke-1 -z-10"
           width={300}

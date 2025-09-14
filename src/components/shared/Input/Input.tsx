@@ -1,12 +1,7 @@
 import { cn } from "@/lib/clsx";
 import type React from "react";
 import { useState, forwardRef } from "react";
-import {
-  Eye,
-  EyeOff,
-  Lock,
-  CircleQuestionMark,
-} from "lucide-react";
+import { Eye, EyeOff, Lock, CircleQuestionMark } from "lucide-react";
 import { numberToPersian } from "@/lib/numberToPersian";
 
 export interface InputProps
@@ -19,7 +14,8 @@ export interface InputProps
   icon?: React.ReactNode;
   isRequired?: boolean;
   colorLabel?: "background" | "primary";
-  mainColor?: "default" | "background";
+  mainColor?: "default" | "background" | "primary";
+  forPrice?: boolean;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -37,6 +33,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       colorLabel,
       mainColor,
       disabled,
+      forPrice = false,
       ...props
     },
     ref
@@ -110,7 +107,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               // Default state
               !isError && !isDisabled && mainColor == "background"
                 ? "text-background border-background"
-                : "border-black-300 text-gray-900",
+                : mainColor == "primary"
+                ? " border-primary"
+                : "border-black-300 text-gray-900 dark:text-white-700",
               !isError && !isDisabled && "focus:border-black",
 
               // Error state
@@ -173,7 +172,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </label>
 
           {/* Password Toggle */}
-          {showPasswordToggle && (
+          {showPasswordToggle && !forPrice && (
             <button
               type="button"
               className={cn(
@@ -187,6 +186,18 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             >
               {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
             </button>
+          )}
+          {!showPasswordToggle && forPrice && (
+            <span
+              className={cn(
+                "absolute left-3 top-1/2 -translate-y-1/2 z-10 m-text-sm",
+                isDisabled
+                  ? "text-gray-400 cursor-not-allowed"
+                  : "text-black-300"
+              )}
+            >
+              تومان
+            </span>
           )}
 
           {/* Lock Icon for Disabled State */}

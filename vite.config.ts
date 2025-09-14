@@ -1,5 +1,6 @@
 import tailwindcss from "@tailwindcss/vite";
-import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+// import { TanStackRouterVite } from "@tanstack/router-plugin/vite";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { resolve } from "node:path";
 import { defineConfig } from "vite";
@@ -9,7 +10,7 @@ import compression from "vite-plugin-compression2";
 export default defineConfig({
   plugins: [
     svgr(),
-    TanStackRouterVite({ autoCodeSplitting: true }),
+    tanstackRouter({ autoCodeSplitting: true }),
     viteReact(),
     tailwindcss(),
     compression({

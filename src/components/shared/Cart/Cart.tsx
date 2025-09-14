@@ -23,19 +23,24 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
   return (
     <div
       ref={ref}
-      className="flex flex-col w-[90%] max-w-80 md:max-w-[30em] h-[115%] bg-background border md:border-2 border-primary rounded-[10px] md:rounded-2.5xl px-1 pb-2 pt-2 md:px-4 md:pt-6 md:pb-4 relative"
+      className="flex flex-col w-[90%] max-w-80 md:max-w-[30em] 
+min-h-60 md:min-h-[32rem] 
+h-auto
+bg-background border md:border-2 border-primary 
+rounded-[10px] md:rounded-2.5xl 
+px-1 pt-2 md:px-4 md:pt-6  min-pb-8 pb-[10%] md:pb-[76px] relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       {...rest}
     >
       <>
         <img
-          src="/images/imageCart.jpg"
+          src={data.image || "/images/imageCart.jpg"}
           className="mx-1 md:mx-0 z-10 rounded-2xl"
           alt="ImageProduct"
         />
         <h5 className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400 dark:text-white">
-          {TruncateString(data.title, 20)}
+          {TruncateString(data.name, 20)}
         </h5>
         {data.type == "product" ? (
           <>
@@ -52,11 +57,11 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
                   alt="profile"
                   className="w-[7px] md:w-[18px] h-fit"
                 />
-                <span>{data.ownerTeam}</span>
+                <span>{data.brand}</span>
               </div>
               <IconPolygon className="w-1.5 md:w-3" />
               <div className="flex px-1 py-0.5 md:py-2.5 md:px-[5px] rounded-xs md:rounded-sm bg-background dark:text-white items-center">
-                <span>{data.categorie}</span>
+                <span>{data.category}</span>
               </div>
             </div>
 
@@ -72,7 +77,7 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
             className="m-caption-xs md:w-text-sm text-justify text-black-300 dark:text-gray-200"
             aria-label="descForBlog"
           >
-            {TruncateString(data.desc, 120)}
+            {TruncateString(data.description, 120)}
           </p>
         )}
       </>
@@ -90,7 +95,9 @@ const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
           size={width >= 768 ? "medium" : "superSmall"}
           className="w-full h-[90%] md:h-full"
         >
-          <span aria-label="textButton">{data.type == "product" ? "خرید" : "مشاهده مقاله"}</span>
+          <span aria-label="textButton">
+            {data.type == "product" ? "خرید" : "مشاهده مقاله"}
+          </span>
           <IconLeft className="w-2.5 h-2.5 md:w-5 md:h-5" />
         </Button>
       </div>
