@@ -1,4 +1,3 @@
-import Loading from "@/components/shared/Loading";
 import useWindowWidth from "@/hooks/WindowWidth";
 import { blogs, products, PuzzleFull } from "@/lib/dataPublic";
 import AutumnOffer from "@components/Banners/AutumnOffer";

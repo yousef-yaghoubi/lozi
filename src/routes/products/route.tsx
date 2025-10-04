@@ -29,6 +29,7 @@ const CATEGORIES = [
 
 // Route Configuration
 export const Route = createFileRoute("/products")({
+  // @ts-ignore
   loader: async ({ context: { queryClient } }) => {
     // Prefetch all categories
     await Promise.all(

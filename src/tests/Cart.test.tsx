@@ -4,19 +4,32 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, test } from "vitest";
 // ساخت دیتا برای تست
 const mockProduct: ProductCart & { type: "product" } = {
-  id: 5,
+  _id: "5ufido",
   type: "product",
-  title: "کیت رابط کاربری موبایل",
-  ownerTeam: "تیم آلفا",
-  categorie: "UI Kit",
+  name: "کیت رابط کاربری موبایل",
+  brand: "تیم آلفا",
+  category: "UI Kit",
   price: 120000,
+  slug: "",
+  countInStock: 5,
+  image: "",
+  images: ["dkc", "fvnm"],
+  description: "fjndcmk",
+  discount: 0,
+  discountedPrice: 120000,
+  rating: 4.5,
+  numReviews: 5,
+  isAvailable: true,
+  createdAt: "",
+  updatedAt: "",
 };
 
 const mockBlog: BlogCart & { type: "blog" } = {
-  id: 1,
+  _id: "1dndkcd",
   type: "blog",
-  title: "مقاله تستی برای ری‌اکت",
-  desc: "این متن برای تست truncate و نمایش توضیحات مقاله است.",
+  name: "مقاله تستی برای ری‌اکت",
+  description: "این متن برای تست truncate و نمایش توضیحات مقاله است.",
+  image: "",
 };
 
 describe("Cart component", () => {
