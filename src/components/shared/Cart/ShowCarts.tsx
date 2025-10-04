@@ -14,12 +14,26 @@ type BlogWithType = { carts: BlogCart[]; type: "blog" };
 type ShowCartsProps = (ProductWithType | BlogWithType) & {
   title: string;
   desc: string;
+  showBtn?: "bottom-center" | "top-left";
   className?: string;
+  onClick?: () => void;
+  disableMore?: boolean;
+  loadingBtn?: boolean;
 };
 
 const MotionCart = motion(Cart);
 
-function ShowCarts({ type, carts, title, desc, className }: ShowCartsProps) {
+function ShowCarts({
+  type,
+  carts,
+  title,
+  desc,
+  showBtn,
+  className,
+  onClick,
+  disableMore = false,
+  loadingBtn,
+}: ShowCartsProps) {
   const width = useWindowWidth();
 
   return (
@@ -32,14 +46,22 @@ function ShowCarts({ type, carts, title, desc, className }: ShowCartsProps) {
       <TitleHead header={title} desc={desc} />
 
       {/* دکمه دسکتاپ */}
-      <Button
-        btn="fill"
-        size="medium"
-        className="max-w-52 hidden md:flex self-end"
-      >
-        <span>دیدن بیشتر</span>
-        <IconLeft className="md:w-2.5 h-fit w-1.5" />
-      </Button>
+      {showBtn !== "bottom-center" && (
+        <Button
+          btn="fill"
+          size="medium"
+          className="max-w-fit hidden md:flex self-end disabled:bg-white-600"
+          onClick={onClick}
+          disabled={disableMore || loadingBtn}
+        >
+          {loadingBtn ? (
+            <span>در حال بارگذاری...</span>
+          ) : (
+            <span>دیدن بیشتر</span>
+          )}
+          <IconLeft className="md:w-2.5 h-fit w-1.5" />
+        </Button>
+      )}
 
       {/* لیست کارت‌ها */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 justify-items-center gap-y-16 md:gap-y-20 mb-12">
@@ -64,10 +86,23 @@ function ShowCarts({ type, carts, title, desc, className }: ShowCartsProps) {
       {/* دکمه موبایل */}
       <Button
         btn="fill"
-        size={width > 680 ? "small" : "superSmall"}
-        className="max-w-52 flex md:hidden self-center"
+        size={
+          showBtn == "bottom-center"
+            ? width > 680
+              ? "medium"
+              : "superSmall"
+            : width > 680
+            ? "small"
+            : "superSmall"
+        }
+        disabled={disableMore || loadingBtn}
+        onClick={onClick}
+        className={cn(
+          `max-w-fit flex self-center disabled:bg-white-600`,
+          showBtn !== "bottom-center" ? "md:hidden" : ""
+        )}
       >
-        <span>دیدن بیشتر</span>
+        {loadingBtn ? <span>در حال بارگذاری...</span> : <span>دیدن بیشتر</span>}
         <IconLeft className="md:w-2.5 h-fit w-1.5" />
       </Button>
     </section>

@@ -29,7 +29,7 @@ const router = createRouter({
   routeTree,
   context: {
     queryClient, // Will be set when router is created
-  } as { queryClient: QueryClient },
+  } as RouterContext,
   defaultPreload: "intent",
   scrollRestoration: true,
   defaultStructuralSharing: true,

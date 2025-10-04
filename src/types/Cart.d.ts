@@ -18,7 +18,7 @@ export interface ProductCart {
   updatedAt: string;
 }
 export interface BlogCart {
-  _id: number;
+  _id: string;
   image: string;
   name: string;
   description: string;

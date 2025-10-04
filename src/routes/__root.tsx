@@ -2,7 +2,6 @@ import Footer from "@components/Footer/Footer";
 import Navbar from "@components/Navbar/Navbar";
 import IconCBig from "@icons/VectorCBig.svg?react";
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 export const Route = createRootRoute({
   component: () => (

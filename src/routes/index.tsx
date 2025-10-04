@@ -1,3 +1,4 @@
+import Loading from "@/components/shared/Loading";
 import useWindowWidth from "@/hooks/WindowWidth";
 import { blogs, products, PuzzleFull } from "@/lib/dataPublic";
 import AutumnOffer from "@components/Banners/AutumnOffer";
@@ -60,12 +61,13 @@ function App() {
       />
 
       <ShowCarts
-        carts={blogs.filter((index) => index._id <= 3)}
+        carts={blogs.filter((_, index) => index < 3)}
         type="blog"
         title="وبــلاگ لــــوزی"
         desc="داغ ترین محصولات منتشر شده توسط برترین دیزاینر ها"
         className="mt-10 md:mt-[72px]"
       />
+
       <div className="absolute md:top-[50em] top-[60em] right-20 border-2 border-primary rounded-full p-2 hidden md:flex">
         <IconSupport className="" />
       </div>

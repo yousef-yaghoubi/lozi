@@ -1,57 +1,104 @@
-import UiKitPage from "@/components/shared/Banners/UiKitPage";
-import Cart from "@/components/shared/Cart/Cart";
-import FilterProducts from "@/components/shared/FilterProducts";
-import type { ProductCart } from "@/types/Cart";
-import { queryOptions, useSuspenseQuery } from "@tanstack/react-query";
+import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
+import UiKitPage from "@/components/shared/Banners/UiKitPage";
+import FilterProducts from "@/components/shared/FilterProducts";
+import { getProducts } from "@/services/getProducts";
+import ShowCarts from "@/components/shared/Cart/ShowCarts";
 
-const fetchProducts = async () => {
-  try {
-    const productsFetch = await fetch(
-      `${import.meta.env.VITE_DOMIN_API}/api/products`
-    );
+// Constants
+const PRODUCTS_PER_PAGE = 1;
 
-    console.log(import.meta.env.VITE_DOMIN_API);
-    if (!productsFetch.ok) {
-      throw new Error(`HTTP error! status: ${productsFetch.status}`);
-    }
+const CATEGORIES = [
+  {
+    key: "application",
+    title: "اپلیکیشن",
+  },
+  {
+    key: "dashboard",
+    title: "داشبورد",
+  },
+  {
+    key: "landing",
+    title: "لندینگ",
+  },
+  {
+    key: "website",
+    title: "وبسایت",
+  },
+] as const;
 
-    const fetchedProducts = await productsFetch.json();
-    return fetchedProducts.data;
-  } catch (error) {
-    console.error("Error fetching products:", error);
-    throw error; // Re-throw to let React Query handle it
-  }
-};
-
-const fetchQueryProduct = queryOptions({
-  queryKey: ["getProducts"],
-  queryFn: fetchProducts,
-});
-
+// Route Configuration
 export const Route = createFileRoute("/products")({
+  loader: async ({ context: { queryClient } }) => {
+    // Prefetch all categories
+    await Promise.all(
+      CATEGORIES.map((category) =>
+        queryClient.prefetchInfiniteQuery({
+          queryKey: ["products", category.key],
+          queryFn: ({ pageParam = 1 }) =>
+            getProducts({
+              sort: "-createdAt",
+              filter: `category=${category.title}`,
+              limit: PRODUCTS_PER_PAGE,
+              page: pageParam,
+            }),
+          initialPageParam: 1,
+          pages: 1,
+        })
+      )
+    );
+    return {};
+  },
   component: RouteComponent,
-  loader: ({ context: { queryClient } }) =>
-    queryClient.ensureQueryData(fetchQueryProduct),
 });
 
-type ProductCartFull = ProductCart & { type: "product" };
+// Custom Hook for Product Category
+function useProductCategory(categoryKey: string, categoryTitle: string) {
+  return useSuspenseInfiniteQuery({
+    queryKey: ["products", categoryKey],
+    queryFn: ({ pageParam = 1 }) =>
+      getProducts({
+        sort: "-createdAt",
+        filter: `category=${categoryTitle}`,
+        limit: PRODUCTS_PER_PAGE,
+        page: pageParam,
+      }),
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) =>
+      lastPage.pagination.total > lastPage.pagination.page
+        ? lastPage.pagination.page + 1
+        : undefined,
+  });
+}
 
+// Component
 function RouteComponent() {
-  const { data } = useSuspenseQuery(fetchQueryProduct);
+  // Fetch all categories
+  const categoriesData = CATEGORIES.map((category) => ({
+    ...category,
+    query: useProductCategory(category.key, category.title),
+  }));
 
   return (
     <>
       <UiKitPage />
       <FilterProducts />
-      <div className="grid grid-cols-1 justify-items-center my-4 md:my-12 md:grid-cols-3 gap-y-10">
-        {data.products?.map((prod: ProductCart) => {
-          const productWithType: ProductCartFull = {
-            ...prod,
-            type: "product",
-          };
-          return <Cart key={prod._id} data={productWithType} />;
-        })}
+      <div className="mt-32">
+        {categoriesData.map(({ key, title, query }) => (
+          <ShowCarts
+            key={key}
+            carts={query.data.pages.flatMap((page) => page.data.products)}
+            title={`جدیدترین کیت های ${title}`}
+            desc="جدیدترین منتشر شده‌ها در این دسته"
+            type="product"
+            showBtn="bottom-center"
+            onClick={
+              query.hasNextPage ? () => query.fetchNextPage() : undefined
+            }
+            disableMore={!query.hasNextPage}
+            loadingBtn={query.isFetchingNextPage}
+          />
+        ))}
       </div>
     </>
   );

@@ -28,11 +28,11 @@ export const LinksForSocialFooter = [
   { id: 3, name: "linkedin", link: "#" },
 ];
 
-interface PuzzleType{
+interface PuzzleType {
   id: number;
   title: string;
   icon: string;
-  state: StateType
+  state: StateType;
 }
 export const PuzzleFull: PuzzleType[] = [
   { id: 1, title: "کیت رابط کاربری", icon: "browser", state: "topToRight" },
@@ -43,7 +43,7 @@ export const PuzzleFull: PuzzleType[] = [
   { id: 6, title: "آبجکت سه بعدی", icon: "objectBox", state: "bottomToRight" },
 ];
 
-export const ThreePuzzle:PuzzleType[] = [
+export const ThreePuzzle: PuzzleType[] = [
   {
     id: 1,
     title: "کیفیت تضمینی فایل‌ها",
@@ -64,7 +64,6 @@ export const ThreePuzzle:PuzzleType[] = [
   },
 ];
 
-
 export const products: ProductCart[] = [
   {
     _id: "bjnskdmcv",
@@ -83,7 +82,7 @@ export const products: ProductCart[] = [
     discount: 0,
     discountedPrice: 0,
     createdAt: "",
-    updatedAt: ""
+    updatedAt: "",
   },
   {
     _id: "bdncim",
@@ -102,7 +101,7 @@ export const products: ProductCart[] = [
     discount: 0,
     discountedPrice: 0,
     createdAt: "",
-    updatedAt: ""
+    updatedAt: "",
   },
   {
     _id: "udihco",
@@ -121,34 +120,44 @@ export const products: ProductCart[] = [
     discount: 0,
     discountedPrice: 0,
     createdAt: "",
-    updatedAt: ""
+    updatedAt: "",
   },
 ];
 
 export const blogs: BlogCart[] = [
   {
-    id: 1,
+    _id: "nfkvdml",
     name: "چطور در ۳۰ روز React را حرفه‌ای یاد بگیریم",
-    description: "این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.",
+    description:
+      "این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.این مقاله مسیر یادگیری React را از پایه تا پیشرفته توضیح می‌دهد و تمرین‌های عملی ارائه می‌کند.",
+    image: "",
   },
   {
-    id: 2,
+    _id: "nfkvdml",
     name: "بهینه‌سازی عملکرد وب‌سایت با Tailwind CSS",
-    description: "در این مطلب نکات و تکنیک‌های بهینه‌سازی استایل‌ها و افزایش سرعت لود سایت با Tailwind CSS بررسی شده است.",
+    description:
+      "در این مطلب نکات و تکنیک‌های بهینه‌سازی استایل‌ها و افزایش سرعت لود سایت با Tailwind CSS بررسی شده است.",
+    image: "",
   },
   {
-    id: 3,
+    _id: "nfkvdml",
     name: "۱۰ کتاب برتر برای توسعه‌دهندگان فرانت‌اند",
-    description: "لیستی از کتاب‌های ضروری برای هر فرانت‌اند دولوپر همراه با توضیح کوتاه درباره هر کتاب.",
+    description:
+      "لیستی از کتاب‌های ضروری برای هر فرانت‌اند دولوپر همراه با توضیح کوتاه درباره هر کتاب.",
+    image: "",
   },
   {
-    id: 4,
+    _id: "nfkvdml",
     name: "مقایسه Next.js و Remix در سال ۲۰۲۵",
-    description: "این مقاله مزایا و معایب هر فریمورک را بررسی کرده و نشان می‌دهد کدام برای پروژه شما مناسب‌تر است.",
+    description:
+      "این مقاله مزایا و معایب هر فریمورک را بررسی کرده و نشان می‌دهد کدام برای پروژه شما مناسب‌تر است.",
+    image: "",
   },
   {
-    id: 5,
+    _id: "nfkvdml",
     name: "چطور پروژه‌های TypeScript را بهینه مدیریت کنیم",
-    description: "روش‌ها و الگوهای برتر برای ساختاردهی و مدیریت پروژه‌های بزرگ TypeScript.",
+    description:
+      "روش‌ها و الگوهای برتر برای ساختاردهی و مدیریت پروژه‌های بزرگ TypeScript.",
+    image: "",
   },
 ];
