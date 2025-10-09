@@ -21,7 +21,7 @@ export function usePriceFilter(initialMin: number, initialMax: number) {
   const handleMinPriceChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = parseNumber(e.target.value);
-      setPriceRange(([min, max]) => {
+      setPriceRange(([_, max]) => {
         const valid = clampValue(val, PRICE_CONFIG.MIN, PRICE_CONFIG.MAX);
         const final = Math.min(valid, max - PRICE_CONFIG.STEP);
         return [final, max];
@@ -33,7 +33,7 @@ export function usePriceFilter(initialMin: number, initialMax: number) {
   const handleMaxPriceChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const val = parseNumber(e.target.value);
-      setPriceRange(([min, max]) => {
+      setPriceRange(([min, _]) => {
         const valid = clampValue(val, PRICE_CONFIG.MIN, PRICE_CONFIG.MAX);
         const final = Math.max(valid, min + PRICE_CONFIG.STEP);
         return [min, final];
