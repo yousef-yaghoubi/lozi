@@ -1,7 +1,7 @@
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import UiKitPage from "@/components/shared/Banners/UiKitPage";
-import FilterProducts from "@/components/shared/FilterProducts";
+import FilterProducts from "@/components/shared/FilterProducts/FilterProducts";
 import { getProducts } from "@/services/getProducts";
 import ShowCarts from "@/components/shared/Cart/ShowCarts";
 
