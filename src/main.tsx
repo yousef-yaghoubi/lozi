@@ -9,7 +9,7 @@ import "./styles.css";
 import reportWebVitals from "./reportWebVitals.ts";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 import Loading from "./components/shared/Loading.tsx";
-
+import {HeroUIProvider} from "@heroui/react";
 interface RouterContext {
   queryClient: QueryClient;
 }
@@ -53,7 +53,9 @@ if (rootElement && !rootElement.innerHTML) {
     <>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
+        <HeroUIProvider>
         <RouterProvider router={router} />
+        </HeroUIProvider>
         <TanStackRouterDevtools router={router} />
       </QueryClientProvider>
     </>

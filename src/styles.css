@@ -1,5 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin '../hero.ts';
+@source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* @custom-variant dark (&:is(.dark *)); */
@@ -837,7 +839,6 @@
 @utility animate-loader {
   animation: loader 1s ease-in-out infinite;
 }
-
 
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);

@@ -1,24 +1,32 @@
+import { useState, useCallback, useMemo } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
 import Button from "./Button/Button";
+import Input from "./Input/Input";
 import IconSearch from "@icons/search.svg?react";
 import VectorCBig from "@icons/VectorCBig.svg?react";
 import IconDown from "@icons/direction-down.svg?react";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import Input from "./Input/Input";
-import { Slider } from "../ui/slider";
-import { useState } from "react";
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu as DropdownMenuHero,
+  DropdownItem,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@heroui/react";
+import { Slider } from "@heroui/react";
+// import {
+//   Select,
+//   SelectContent,
+//   SelectItem,
+//   SelectTrigger,
+//   SelectValue,
+// } from "@/components/ui/select";
+// import { Slider } from "../ui/slider";
 
 function FilterProducts() {
+  const navigate = useNavigate();
+
   const items = [
     { id: 0, label: "دسته بندی بر اساس", value: "none" },
     { id: 1, label: "کیت داشبورد", value: "dashboard" },
@@ -27,106 +35,125 @@ function FilterProducts() {
     { id: 4, label: "لندینگ", value: "landing" },
   ];
 
-  // Fixed: Use numbers instead of strings for slider values
-  const [priceRange, setPriceRange] = useState([50000, 9000000]);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
-
-  // Helper function to format numbers with commas
-  const formatNumber = (num: number): string => {
-    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-  };
-
-  // Helper function to parse formatted number string back to number
-  const parseNumber = (str: string): number => {
-    return parseInt(str.replace(/,/g, ""), 10) || 0;
-  };
-
-  const STEP = 100000;
+  const STEP = 100_000;
   const MIN_PRICE = 0;
-  const MAX_PRICE = 10000000;
-  // Handle price input changes
-  const handleMinPriceChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const newMin: number = parseNumber(e.target.value);
+  const MAX_PRICE = 10_000_000;
 
-    const minValue = newMin ?? MIN_PRICE;
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    MIN_PRICE,
+    MAX_PRICE,
+  ]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("none");
+  const [isMinFocused, setIsMinFocused] = useState(false);
+  const [isMaxFocused, setIsMaxFocused] = useState(false);
+  const [selectedKeys, setSelectedKeys] = useState<Set<string | number>>(
+    new Set(["دسته بندی بر اساس"])
+  );
 
-    const clampedMin = Math.max(MIN_PRICE, Math.min(MAX_PRICE, minValue));
+  const selectedValue = useMemo(
+    () => Array.from(selectedKeys).join(", ").replace(/_/g, ""),
+    [selectedKeys]
+  );
+  // --- helpers ---
+  const formatNumber = useCallback((num: number): string => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }, []);
 
-    const finalMin = Math.min(clampedMin, priceRange[1] - 50000);
+  const parseNumber = useCallback((str: string): number => {
+    const num = parseInt(str.replace(/,/g, ""), 10);
+    return Number.isNaN(num) ? 0 : num;
+  }, []);
 
-    setPriceRange([finalMin, priceRange[1]]);
-  };
+  // --- handlers ---
+  const handleMinPriceChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newMin = parseNumber(e.target.value);
+      const clampedMin = Math.max(MIN_PRICE, Math.min(MAX_PRICE, newMin));
+      const finalMin = Math.min(clampedMin, priceRange[1] - STEP);
+      setPriceRange([finalMin, priceRange[1]]);
+    },
+    [parseNumber, priceRange]
+  );
 
-  const handleMaxPriceChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    const newMax: number = parseNumber(e.target.value);
+  const handleMaxPriceChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newMax = parseNumber(e.target.value);
+      const clampedMax = Math.min(MAX_PRICE, Math.max(MIN_PRICE, newMax));
+      const finalMax = Math.max(clampedMax, priceRange[0] + STEP);
+      setPriceRange([priceRange[0], finalMax]);
+    },
+    [parseNumber, priceRange]
+  );
 
-    const maxValue = newMax ?? MAX_PRICE;
-
-    const clampedMax = Math.min(MAX_PRICE, Math.max(MIN_PRICE, maxValue));
-
-    const finalMax = Math.max(clampedMax, priceRange[0] + 50000);
-
-    setPriceRange([priceRange[0], finalMax]);
-  };
-
-  // Handle slider changes
-  const handleSliderChange = (newValue: number[]): void => {
+  const handleSliderChange = useCallback((newValue: number[]) => {
     let [newMin, newMax] = newValue;
-
-    // clamp min
     newMin = Math.max(MIN_PRICE, Math.min(MAX_PRICE, newMin));
-    newMin = Math.min(newMin, newMax - STEP);
-
-    // clamp max
+    newMin =
+      Math.min(newMin, newMax - STEP) < 0 ? 0 : Math.min(newMin, newMax - STEP);
     newMax = Math.min(MAX_PRICE, Math.max(MIN_PRICE, newMax));
     newMax = Math.max(newMax, newMin + STEP);
-    if (newMax == 0) newMax = STEP;
-
     setPriceRange([newMin, newMax]);
-  };
+  }, []);
 
-  // Handle search
-  const handleSearch = () => {
-    // Add your search logic here
-    console.log({
-      category: selectedCategory,
-      priceRange: priceRange,
-      searchQuery: searchQuery,
+  const handleSearch = useCallback(() => {
+    navigate({
+      to: "/productList",
+      search: {
+        search: searchQuery || undefined,
+        minPrice: priceRange[0] !== MIN_PRICE ? priceRange[0] : undefined,
+        maxPrice: priceRange[1] !== MAX_PRICE ? priceRange[1] : undefined,
+        category: selectedCategory !== "none" ? selectedCategory : undefined,
+      },
     });
-  };
+  }, [navigate, searchQuery, priceRange, selectedCategory]);
 
+  const handleKeyPress = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") handleSearch();
+    },
+    [handleSearch]
+  );
+
+  // --- render ---
   return (
-    <div className="relative overflow-clip flex flex-col lg:flex-row h-auto gap-4 py-4 w-full max-w-[1116px] bg-primary min-h-[115px] mt-8 md:mt-12 mx-auto rounded-2.5xl px-4 items-center justify-between m-text-sm-bold lg:w-text-md-bold">
+    <div className="relative overflow-clip flex flex-col lg:flex-row gap-4 py-4 w-full max-w-[1116px] bg-primary min-h-[115px] mt-8 md:mt-12 mx-auto rounded-2.5xl px-4 items-center justify-between m-text-sm-bold lg:w-text-md-bold">
+      {/* Category Select */}
       <div className="flex w-full flex-col sm:flex-row gap-4">
-        {/* Category Select */}
-        <Select
-          dir="rtl"
-          value={selectedCategory}
-          onValueChange={setSelectedCategory}
-        >
-          <SelectTrigger className="outline-none w-full rounded-xl !h-16 z-50 border-2 border-background text-background m-text-sm-bold lg:w-text-md-bold">
-            <SelectValue
-              placeholder="دسته بندی بر اساس"
-              className="min-w-[13em] w-full focus-visible:border-transparent justify-between lg:px-4 outline-none"
-            />
-          </SelectTrigger>
-          <SelectContent className="dark:bg-fourground">
+        <Dropdown backdrop="opaque">
+          <DropdownTrigger
+            className="outline-none w-full rounded-xl !h-16 z-50 border-2 border-background text-background text-xl"
+            aria-label="انتخاب دسته بندی محصولات"
+          >
+            <Button
+              btn="stroke"
+              size="large"
+              className="min-w-[13em] w-full justify-between lg:px-4"
+            >
+              {selectedValue}
+              <IconDown width={24} height={24} />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenuHero
+            variant="faded"
+            aria-label="Static Actions"
+            items={items}
+            selectedKeys={selectedKeys}
+            selectionMode="single"
+            onSelectionChange={(keys) => {
+              setSelectedKeys(new Set(keys));
+            }}
+          >
             {items.map((item) => (
-              <SelectItem key={item.id} value={item.value}>
+              <DropdownItem key={item.label} value={item.value}>
                 {item.label}
-              </SelectItem>
+              </DropdownItem>
             ))}
-          </SelectContent>
-        </Select>
+          </DropdownMenuHero>
+        </Dropdown>
 
-        {/* Price Range Dropdown */}
-        <DropdownMenu dir="rtl">
-          <DropdownMenuTrigger className="h-fit outline-none w-full">
+        <Popover placement="bottom" backdrop="opaque">
+          <PopoverTrigger>
             <Button
               btn="stroke"
               size="large"
@@ -136,44 +163,69 @@ function FilterProducts() {
               بازه قیمتی
               <IconDown width={24} height={24} />
             </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="dark:bg-fourground w-80">
-            <div className="w-4/5 h-auto flex flex-col py-4 gap-4 mx-auto">
-              {/* Fixed: Pass correct value and handler to Slider */}
-              <Slider
+          </PopoverTrigger>
+          <PopoverContent>
+            <div className="w-4/5 flex flex-col py-4 gap-4 mx-auto">
+              {/* <Slider
                 value={priceRange}
                 onValueChange={handleSliderChange}
                 max={MAX_PRICE}
                 min={MIN_PRICE}
                 step={STEP}
+                aria-label="انتخاب بازه قیمتی"
+              /> */}
+
+              <Slider 
+                defaultValue={priceRange}
+                label="بازه قیمتی"
+                lang="fa"
+                onChange={(value) => setPriceRange(value as [number, number])}
+                maxValue={MAX_PRICE}
+                minValue={MIN_PRICE}
+                step={STEP}
+                size="sm"
               />
-              <div className="flex flex-col justify-between gap-y-4">
-                <div className="flex w-full items-center gap-4">
+              <div className="flex flex-col gap-y-4">
+                <div className="flex items-center gap-4">
                   <span>از:</span>
                   <Input
                     size="md"
-                    value={formatNumber(priceRange[0])}
-                    onChange={handleMinPriceChange}
+                    type="text"
                     forPrice
                     mainColor="primary"
-                    type="text"
+                    value={
+                      isMinFocused
+                        ? priceRange[0].toString()
+                        : formatNumber(priceRange[0])
+                    }
+                    onChange={handleMinPriceChange}
+                    onFocus={() => setIsMinFocused(true)}
+                    onBlur={() => setIsMinFocused(false)}
+                    aria-label="حداقل قیمت"
                   />
                 </div>
-                <div className="flex w-full items-center gap-4">
+                <div className="flex items-center gap-4">
                   <span>تا:</span>
                   <Input
                     size="md"
-                    value={formatNumber(priceRange[1])}
-                    mainColor="primary"
-                    forPrice
-                    onChange={handleMaxPriceChange}
                     type="text"
+                    forPrice
+                    mainColor="primary"
+                    value={
+                      isMaxFocused
+                        ? priceRange[1].toString()
+                        : formatNumber(priceRange[1])
+                    }
+                    onChange={handleMaxPriceChange}
+                    onFocus={() => setIsMaxFocused(true)}
+                    onBlur={() => setIsMaxFocused(false)}
+                    aria-label="حداکثر قیمت"
                   />
                 </div>
               </div>
             </div>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </PopoverContent>
+        </Popover>
       </div>
 
       {/* Search Input */}
@@ -183,18 +235,20 @@ function FilterProducts() {
         colorLabel="primary"
         mainColor="background"
         value={searchQuery}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setSearchQuery(e.target.value)
-        }
+        onChange={(e) => setSearchQuery(e.target.value)}
+        onKeyPress={handleKeyPress}
+        aria-label="جستجوی محصولات"
       />
 
       {/* Search Button */}
       <Button
+        title="دیدن کل محصولات"
         btn="fill"
         color="background"
         size="large"
-        className=" px-5 lg:px-10 w-full lg:max-w-48"
+        className="px-5 lg:px-10 w-full lg:max-w-48"
         onClick={handleSearch}
+        aria-label="شروع جستجو"
       >
         <span className="flex gap-x-3 items-center">
           <span>جستجو</span>
