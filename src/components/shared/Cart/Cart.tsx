@@ -8,6 +8,7 @@ import IconHeart from "@icons/Heart.svg?react";
 import IconPolygon from "@icons/Polygon1.svg?react";
 import IconCBig from "@icons/VectorCBig.svg?react";
 import IconLeft from "@icons/direaction-left.svg?react";
+import { useNavigate } from "@tanstack/react-router";
 import { forwardRef, useState } from "react";
 type ProductCartFull = ProductCart & { type: "product" };
 type BlogCartFull = BlogCart & { type: "blog" };
@@ -19,6 +20,13 @@ interface CartProps extends React.HTMLAttributes<HTMLDivElement> {
 const Cart = forwardRef<HTMLDivElement, CartProps>(({ data, ...rest }, ref) => {
   const [isHovered, setIsHovered] = useState(false);
   const width = useWindowWidth();
+  const navigate = useNavigate();
+
+  const navigateProduct = () => {
+    if (data.type == "product") {
+      navigate({ to: `/product/${data._id}` });
+    }
+  };
 
   return (
     <div
@@ -36,12 +44,17 @@ px-1 pt-2 md:px-4 md:pt-6  min-pb-8 pb-[10%] md:pb-[76px] relative"
       <>
         <img
           src={data.image || "/images/imageCart.jpg"}
-          className="mx-1 md:mx-0 z-10 rounded-2xl"
+          className="mx-1 md:mx-0 z-10 rounded-2xl cursor-pointer"
           alt="ImageProduct"
+          onClick={navigateProduct}
         />
-        <h5 className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400 dark:text-white">
+        <h5
+          className="m-caption-bold md:w-h6 m-1 md:m-2 text-black-400 dark:text-white z-50 cursor-pointer"
+          onClick={navigateProduct}
+        >
           {TruncateString(data.name, 20)}
         </h5>
+
         {data.type == "product" ? (
           <>
             <div

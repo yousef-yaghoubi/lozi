@@ -13,6 +13,7 @@ import { Route as AssistRouteImport } from './routes/assist'
 import { Route as ProductsRouteRouteImport } from './routes/products/route'
 import { Route as ProductListRouteRouteImport } from './routes/productList/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ProductProductIdRouteRouteImport } from './routes/product/$productId/route'
 
 const AssistRoute = AssistRouteImport.update({
   id: '/assist',
@@ -34,18 +35,25 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductProductIdRouteRoute = ProductProductIdRouteRouteImport.update({
+  id: '/product/$productId',
+  path: '/product/$productId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/productList': typeof ProductListRouteRoute
   '/products': typeof ProductsRouteRoute
   '/assist': typeof AssistRoute
+  '/product/$productId': typeof ProductProductIdRouteRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/productList': typeof ProductListRouteRoute
   '/products': typeof ProductsRouteRoute
   '/assist': typeof AssistRoute
+  '/product/$productId': typeof ProductProductIdRouteRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,25 @@ export interface FileRoutesById {
   '/productList': typeof ProductListRouteRoute
   '/products': typeof ProductsRouteRoute
   '/assist': typeof AssistRoute
+  '/product/$productId': typeof ProductProductIdRouteRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/productList' | '/products' | '/assist'
+  fullPaths:
+    | '/'
+    | '/productList'
+    | '/products'
+    | '/assist'
+    | '/product/$productId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/productList' | '/products' | '/assist'
-  id: '__root__' | '/' | '/productList' | '/products' | '/assist'
+  to: '/' | '/productList' | '/products' | '/assist' | '/product/$productId'
+  id:
+    | '__root__'
+    | '/'
+    | '/productList'
+    | '/products'
+    | '/assist'
+    | '/product/$productId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +87,7 @@ export interface RootRouteChildren {
   ProductListRouteRoute: typeof ProductListRouteRoute
   ProductsRouteRoute: typeof ProductsRouteRoute
   AssistRoute: typeof AssistRoute
+  ProductProductIdRouteRoute: typeof ProductProductIdRouteRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +120,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/product/$productId': {
+      id: '/product/$productId'
+      path: '/product/$productId'
+      fullPath: '/product/$productId'
+      preLoaderRoute: typeof ProductProductIdRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +135,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductListRouteRoute: ProductListRouteRoute,
   ProductsRouteRoute: ProductsRouteRoute,
   AssistRoute: AssistRoute,
+  ProductProductIdRouteRoute: ProductProductIdRouteRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -30,4 +30,13 @@ export default defineConfig({
     setupFiles: "./src/tests/vitest.setup.ts",
     css: true,
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: import.meta.env.VITE_DOMIN_API,
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
 });
